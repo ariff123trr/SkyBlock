@@ -420,7 +420,8 @@
             <ul class="nav-links">
                 <li><a onclick="switchPage('home')" class="active" id="nav-home">Ana Sayfa</a></li>
                 <li><a onclick="switchPage('store')" id="nav-store">Mağaza</a></li>
-                <li><a onclick="switchPage('inventory')" id="nav-inventory">Sandık (Envanter)</a></li>
+                <li><a onclick="switchPage('cart')" id="nav-cart"><i class="fa-solid fa-cart-shopping"></i> Sepet (<span id="cart-count">0</span>)</a></li>
+                <li><a onclick="switchPage('inventory')" id="nav-inventory">Sandık</a></li>
                 <li><a onclick="switchPage('profile')" id="nav-profile">Profil</a></li>
                 <li>
                     <div class="user-pill" onclick="toggleDrawer(true)">
@@ -483,8 +484,21 @@
             <h3 id="category-title" style="margin-bottom: 15px; border-left: 4px solid var(--primary); padding-left: 10px;">VIP Paketleri</h3>
             
             <!-- Ürün Listeleme Alanı -->
-            <div class="store-grid" id="store-products">
-                <!-- İçerik JavaScript ile dinamik dolacak -->
+            <div class="store-grid" id="store-products"></div>
+        </div>
+
+        <!-- Cart Page -->
+        <div id="page-cart" class="page">
+            <h2>Alışveriş Sepeti</h2>
+            <p style="color:var(--text-muted); margin:10px 0 20px 0;">Sepetine eklediğin ürünleri buradan kontrol edebilir ve onaylayabilirsin.</p>
+            <div style="background:var(--card-bg); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:25px; max-width:700px;">
+                <div id="cart-items-container">
+                    <p style="color:var(--text-muted);">Sepetinizde henüz ürün bulunmuyor.</p>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.1); margin-top:20px; padding-top:15px; display:flex; justify-content:space-between; align-items:center;">
+                    <h3 style="font-size:1.2rem;">Toplam: <span id="cart-total-price" style="color:var(--success);">0.00</span> ₺</h3>
+                    <button class="btn" id="checkout-btn" style="width:auto; padding:10px 25px; background:var(--success); color:white; display:none;" onclick="proceedCheckout()">Sepeti Onayla</button>
+                </div>
             </div>
         </div>
 
@@ -542,6 +556,7 @@
                     </div>
                 </a>
             </li>
+            <li><a onclick="switchPage('cart'); toggleDrawer(false);"><div class="drawer-menu-left"><i class="fa-solid fa-cart-shopping"></i><span>Sepet</span></div><i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i></a></li>
             <li><a onclick="switchPage('inventory'); toggleDrawer(false);"><div class="drawer-menu-left"><i class="fa-solid fa-box-archive"></i><span>Sandık</span></div><i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i></a></li>
             <li><a onclick="switchPage('store'); toggleDrawer(false);"><div class="drawer-menu-left"><i class="fa-solid fa-cart-shopping"></i><span>Mağaza</span></div><i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i></a></li>
             <li class="logout"><a onclick="logoutAction()"><div class="drawer-menu-left"><i class="fa-solid fa-right-from-bracket"></i><span>Çıkış Yap / Değiştir</span></div><i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--danger);"></i></a></li>
@@ -549,24 +564,24 @@
     </div>
 </div>
 
-<!-- Genişletilmiş Banka/Ödeme Seçenekleri Modalı -->
+<!-- Banka / Ödeme Modalı (Yetersiz bakiye veya doğrudan bakiye yükleme) -->
 <div class="modal" id="bankModal">
     <div class="modal-content">
-        <h3>Ödeme / Banka Seçimi</h3>
-        <p style="font-size:0.9rem; color:var(--text-muted); margin-top:5px;">Sepeti onayladınız. Ödeme yöntemini seçin:</p>
+        <h3>Ödeme / Bakiye Yükleme</h3>
+        <p id="modal-desc" style="font-size:0.9rem; color:var(--text-muted); margin-top:5px;">Sepet tutarını karşılamak için ödeme yöntemi seçin:</p>
         <div class="bank-options">
-            <button class="bank-btn" onclick="completePurchase('Papara')">Papara</button>
-            <button class="bank-btn" onclick="completePurchase('İninal')">İninal</button>
-            <button class="bank-btn" onclick="completePurchase('Garanti BBVA')">Garanti BBVA</button>
-            <button class="bank-btn" onclick="completePurchase('Akbank')">Akbank</button>
-            <button class="bank-btn" onclick="completePurchase('Denizbank')">Denizbank</button>
-            <button class="bank-btn" onclick="completePurchase('Halkbank')">Halkbank</button>
+            <button class="bank-btn" onclick="completePayment('Papara')">Papara</button>
+            <button class="bank-btn" onclick="completePayment('İninal')">İninal</button>
+            <button class="bank-btn" onclick="completePayment('Garanti BBVA')">Garanti BBVA</button>
+            <button class="bank-btn" onclick="completePayment('Akbank')">Akbank</button>
+            <button class="bank-btn" onclick="completePayment('Denizbank')">Denizbank</button>
+            <button class="bank-btn" onclick="completePayment('Halkbank')">Halkbank</button>
         </div>
         <button class="btn" style="background:var(--danger); color:white; margin-top:5px;" onclick="closeBankModal()">İptal Et</button>
     </div>
 </div>
 
-<!-- Giriş Yap ve Kayıt Ol Ayrı Sekmeli Modal -->
+<!-- Giriş / Kayıt Modalı -->
 <div class="modal" id="authModal">
     <div class="modal-content" style="width: 450px;">
         <div class="auth-tabs">
@@ -596,9 +611,8 @@
 
 <script>
     let userBalance = 40.00;
+    let cart = [];
     let userInventory = [];
-    let pendingItem = null;
-    let pendingPrice = 0;
     let currentUser = "Pund'1k";
 
     // Mağaza Ürün Verileri (İstediğin VIP'ler ve Diğer Kategoriler)
@@ -629,7 +643,6 @@
     };
 
     function filterCategory(categoryKey, element) {
-        // Aktif kart tasarımını güncelle
         document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
         element.classList.add('active');
 
@@ -642,7 +655,6 @@
         };
         document.getElementById('category-title').innerText = titles[categoryKey];
 
-        // Ürünleri listele
         const container = document.getElementById('store-products');
         container.innerHTML = "";
 
@@ -656,13 +668,12 @@
                         <p style="color:var(--text-muted); font-size:0.85rem; text-decoration:line-through; margin-top:5px;">${item.oldPrice}</p>
                         <p style="color:var(--success); font-weight:bold; font-size:1.1rem; margin:2px 0 15px 0;">${item.price.toFixed(2)} ₺</p>
                     </div>
-                    <button class="btn" onclick="buyItem('${item.name}', ${item.price})">Sepete Ekle & Satın Al</button>
+                    <button class="btn" onclick="addToCart('${item.name}', ${item.price})">Sepete Ekle</button>
                 </div>
             `;
         });
     }
 
-    // Sayfa açıldığında varsayılan olarak VIP'leri yükle
     window.onload = function() {
         filterCategory('vips', document.querySelector('.category-card'));
     };
@@ -696,31 +707,94 @@
         }
     }
 
-    function buyItem(itemName, price) {
-        if(userBalance < price) {
-            alert("Yetersiz bakiye! Lütfen bakiyenizi kontrol edin.");
+    // Ürünü sepete ekleme
+    function addToCart(name, price) {
+        cart.push({ name, price });
+        updateCartUI();
+        alert("'" + name + "' sepete eklendi!");
+    }
+
+    function updateCartUI() {
+        document.getElementById('cart-count').innerText = cart.length;
+        const container = document.getElementById('cart-items-container');
+        const checkoutBtn = document.getElementById('checkout-btn');
+
+        if(cart.length === 0) {
+            container.innerHTML = '<p style="color:var(--text-muted);">Sepetinizde henüz ürün bulunmuyor.</p>';
+            document.getElementById('cart-total-price').innerText = "0.00";
+            checkoutBtn.style.display = 'none';
             return;
         }
-        pendingItem = itemName;
-        pendingPrice = price;
-        document.getElementById('bankModal').style.display = 'flex';
+
+        container.innerHTML = '';
+        let total = 0;
+        cart.forEach((item, index) => {
+            total += item.price;
+            container.innerHTML += `
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                    <div>
+                        <h4 style="font-size:1rem;">${item.name}</h4>
+                        <span style="color:var(--success); font-weight:bold;">${item.price.toFixed(2)} ₺</span>
+                    </div>
+                    <button class="btn" style="width:auto; background:var(--danger); color:white; padding:5px 10px; font-size:0.8rem;" onclick="removeFromCart(${index})">Kaldır</button>
+                </div>
+            `;
+        });
+
+        document.getElementById('cart-total-price').innerText = total.toFixed(2);
+        checkoutBtn.style.display = 'block';
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartUI();
+    }
+
+    // Sepeti Onayla butonuna basıldığında çalışan kısım
+    function proceedCheckout() {
+        let total = cart.reduce((sum, item) => sum + item.price, 0);
+
+        // Eğer bakiye sepet tutarına yetmiyorsa veya tamamsa modal açılır
+        if(userBalance < total) {
+            document.getElementById('modal-desc').innerText = `Yetersiz bakiye! Toplam tutar: ${total.toFixed(2)} ₺ (Mevcut Bakiye: ${userBalance.toFixed(2)} ₺). Lütfen ödeme yöntemi seçin:`;
+            document.getElementById('bankModal').style.display = 'flex';
+        } else {
+            // Bakiye yetiyorsa doğrudan hesaptan düşer ve sandığa ekler
+            userBalance -= total;
+            updateBalances();
+
+            cart.forEach(item => userInventory.push(item.name));
+            cart = [];
+            updateCartUI();
+            updateInventoryUI();
+
+            alert("Ödeme başarıyla tamamlandı! Ürünleriniz sandığınıza (envantere) eklendi.");
+        }
     }
 
     function closeBankModal() {
         document.getElementById('bankModal').style.display = 'none';
     }
 
-    function completePurchase(bankName) {
-        userBalance -= pendingPrice;
-        document.getElementById('user-balance').innerText = userBalance.toFixed(2);
-        document.getElementById('drawer-balance').innerText = userBalance.toFixed(2);
-        document.getElementById('profile-balance').innerText = userBalance.toFixed(2);
+    function completePayment(bankName) {
+        let total = cart.reduce((sum, item) => sum + item.price, 0);
+        userBalance += total; // Ödeme simülasyonu ile bakiye eklenir/tamamlanır
+        userBalance -= total; // Sepet tutarı düşülür
 
-        userInventory.push(pendingItem);
+        updateBalances();
+        cart.forEach(item => userInventory.push(item.name));
+        cart = [];
+        updateCartUI();
         updateInventoryUI();
 
         closeBankModal();
-        alert(pendingItem + " için " + bankName + " üzerinden ödeme onaylandı ve Sandığınıza eklendi!");
+        alert(bankName + " ile ödeme onaylandı, sepetinizdeki ürünler sandığınıza eklendi!");
+    }
+
+    function updateBalances() {
+        document.getElementById('user-balance').innerText = userBalance.toFixed(2);
+        document.getElementById('drawer-balance').innerText = userBalance.toFixed(2);
+        document.getElementById('profile-balance').innerText = userBalance.toFixed(2);
     }
 
     function updateInventoryUI() {
