@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yurdakul Network - Emek Skyblock</title>
     <!-- Google Fonts ve İkonlar -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -13,12 +13,54 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: #ffffff;
+            color: #1e293b;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Sağda ve Solda Yürüyen Beyaz Mini Kurtlar */
+        .mini-wolf {
+            position: fixed;
+            bottom: 20px;
+            font-size: 24px;
+            z-index: 50;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.15));
+            animation-duration: 12s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            pointer-events: none;
+        }
+
+        .wolf-left {
+            left: 15px;
+            animation-name: wolfMoveLeft;
+        }
+
+        .wolf-right {
+            right: 15px;
+            animation-name: wolfMoveRight;
+            transform: scaleX(-1);
+        }
+
+        @keyframes wolfMoveLeft {
+            0% { transform: translateY(0) scaleX(1); }
+            25% { transform: translateY(-15px) scaleX(1); }
+            50% { transform: translateY(0) scaleX(1); }
+            75% { transform: translateY(-10px) scaleX(1); }
+            100% { transform: translateY(0) scaleX(1); }
+        }
+
+        @keyframes wolfMoveRight {
+            0% { transform: translateY(0) scaleX(-1); }
+            25% { transform: translateY(-15px) scaleX(-1); }
+            50% { transform: translateY(0) scaleX(-1); }
+            75% { transform: translateY(-10px) scaleX(-1); }
+            100% { transform: translateY(0) scaleX(-1); }
         }
 
         /* Header Tasarımı */
@@ -27,26 +69,26 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
-            background-color: rgba(15, 23, 42, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid #1e293b;
+            border-bottom: 1px solid #f1f5f9;
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
         .logo h2 {
-            color: #fff;
+            color: #0f172a;
             font-weight: 800;
             cursor: pointer;
         }
 
         .logo span {
-            color: #38bdf8;
+            color: #6366f1;
         }
 
         nav a {
-            color: #94a3b8;
+            color: #64748b;
             text-decoration: none;
             margin: 0 15px;
             font-weight: 600;
@@ -55,7 +97,7 @@
         }
 
         nav a:hover, nav a.active {
-            color: #38bdf8;
+            color: #6366f1;
         }
 
         .header-right {
@@ -65,26 +107,27 @@
         }
 
         .auth-btn {
-            background: #38bdf8;
-            color: #0f172a;
+            background: #6366f1;
+            color: #ffffff;
             border: none;
             padding: 10px 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
         }
 
         .auth-btn:hover {
-            background: #0ea5e9;
+            background: #4f46e5;
         }
 
         .cart-icon-btn {
-            background: #1e293b;
-            border: 1px solid #334155;
-            color: #38bdf8;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #6366f1;
             padding: 10px 15px;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             position: relative;
             font-size: 1.1rem;
@@ -92,7 +135,7 @@
         }
 
         .cart-icon-btn:hover {
-            border-color: #38bdf8;
+            border-color: #6366f1;
         }
 
         .cart-count {
@@ -125,7 +168,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.9)), 
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95)), 
                         url('https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1920&auto=format&fit=crop') no-repeat center center/cover;
             padding: 50px 20px;
         }
@@ -134,64 +177,62 @@
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 15px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.6);
+            color: #0f172a;
         }
 
         .hero p {
-            color: #cbd5e1;
+            color: #475569;
             font-size: 1.15rem;
             margin-bottom: 30px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.6);
         }
 
         .ip-box {
-            background-color: rgba(30, 41, 59, 0.9);
-            border: 2px solid #334155;
+            background-color: #f8fafc;
+            border: 2px solid #e2e8f0;
             padding: 15px 35px;
-            border-radius: 12px;
+            border-radius: 14px;
             display: inline-flex;
             align-items: center;
             gap: 15px;
             cursor: pointer;
-            backdrop-filter: blur(5px);
             transition: 0.3s;
             margin-bottom: 35px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
         .ip-box:hover {
-            border-color: #38bdf8;
+            border-color: #6366f1;
             transform: translateY(-3px);
         }
 
         .ip-box span {
             font-size: 1.25rem;
             font-weight: 600;
-            color: #fff;
+            color: #0f172a;
         }
 
         .ip-box i {
-            color: #38bdf8;
+            color: #6366f1;
             font-size: 1.2rem;
         }
 
         .online-billboard {
-            background: rgba(30, 41, 59, 0.85);
-            border: 1px solid #334155;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
             padding: 15px 30px;
             border-radius: 14px;
-            backdrop-filter: blur(5px);
             display: flex;
             align-items: center;
             gap: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
         }
 
         .online-dot {
             width: 12px;
             height: 12px;
-            background-color: #4ade80;
+            background-color: #22c55e;
             border-radius: 50%;
-            box-shadow: 0 0 10px #4ade80;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
             animation: pulse 1.5s infinite;
         }
 
@@ -204,7 +245,7 @@
         .online-billboard span {
             font-size: 1.05rem;
             font-weight: 600;
-            color: #f8fafc;
+            color: #334155;
         }
 
         /* Mağaza & Banka Bölümü */
@@ -212,15 +253,15 @@
             font-size: 2.2rem;
             margin-bottom: 35px;
             text-align: center;
-            color: #fff;
+            color: #0f172a;
             font-weight: 800;
         }
 
         .category-title {
             font-size: 1.5rem;
-            color: #38bdf8;
+            color: #6366f1;
             margin: 30px 0 20px 0;
-            border-left: 4px solid #38bdf8;
+            border-left: 4px solid #6366f1;
             padding-left: 10px;
         }
 
@@ -243,27 +284,29 @@
         }
 
         .shop-card {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 14px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
             padding: 25px;
             text-align: center;
             transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
 
         .shop-card:hover {
-            border-color: #38bdf8;
+            border-color: #6366f1;
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.08);
         }
 
         .shop-card h3 {
             font-size: 1.25rem;
-            color: #38bdf8;
+            color: #0f172a;
             margin-bottom: 10px;
         }
 
         .shop-card p {
-            color: #94a3b8;
+            color: #64748b;
             font-size: 0.85rem;
             margin-bottom: 15px;
             line-height: 1.4;
@@ -272,31 +315,31 @@
         .price {
             font-size: 1.2rem;
             font-weight: 800;
-            color: #4ade80;
+            color: #16a34a;
             margin-bottom: 15px;
         }
 
         .buy-btn {
-            background: #38bdf8;
-            color: #0f172a;
+            background: #6366f1;
+            color: #ffffff;
             border: none;
             width: 100%;
             padding: 10px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
         }
 
         .buy-btn:hover {
-            background: #0ea5e9;
+            background: #4f46e5;
         }
 
         .bank-section {
             margin-top: 50px;
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 14px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
             padding: 30px;
         }
 
@@ -308,46 +351,48 @@
         }
 
         .bank-card {
-            background: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 10px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
             padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
 
         .bank-card h4 {
-            color: #38bdf8;
+            color: #6366f1;
             margin-bottom: 8px;
             font-size: 1.1rem;
         }
 
         .bank-card p {
             font-size: 0.85rem;
-            color: #94a3b8;
+            color: #64748b;
             margin-bottom: 5px;
         }
 
         .bank-code {
-            color: #4ade80;
+            color: #16a34a;
             font-weight: 700;
             font-size: 0.9rem;
         }
 
         /* Sepet Paneli */
         .cart-panel {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 14px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
             padding: 20px;
             height: fit-content;
             position: sticky;
             top: 100px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
         .cart-panel h3 {
             font-size: 1.2rem;
             margin-bottom: 15px;
-            color: #fff;
-            border-bottom: 1px solid #334155;
+            color: #0f172a;
+            border-bottom: 1px solid #e2e8f0;
             padding-bottom: 10px;
             display: flex;
             align-items: center;
@@ -366,8 +411,9 @@
             justify-content: space-between;
             align-items: center;
             padding: 8px 0;
-            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+            border-bottom: 1px solid #e2e8f0;
             font-size: 0.85rem;
+            color: #334155;
         }
 
         .cart-item button {
@@ -386,32 +432,34 @@
             margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
-            color: #4ade80;
+            color: #16a34a;
         }
 
         .checkout-btn {
-            background: #4ade80;
-            color: #0f172a;
+            background: #22c55e;
+            color: #ffffff;
             border: none;
             width: 100%;
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 800;
             cursor: pointer;
             transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
         }
 
         .checkout-btn:hover {
-            background: #22c55e;
+            background: #16a34a;
         }
 
         .content-box {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 14px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
             padding: 30px;
             max-width: 800px;
             margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
         .rank-item, .rule-item {
@@ -419,7 +467,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 18px 0;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
         }
 
         .rank-item:last-child, .rule-item:last-child {
@@ -428,12 +477,13 @@
 
         /* Profil Sayfası */
         .profile-container {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 14px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
             padding: 40px;
             max-width: 600px;
             margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
         .profile-header {
@@ -441,15 +491,15 @@
             align-items: center;
             gap: 20px;
             margin-bottom: 30px;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid #e2e8f0;
             padding-bottom: 20px;
         }
 
         .profile-avatar {
             width: 70px;
             height: 70px;
-            background: #38bdf8;
-            color: #0f172a;
+            background: #6366f1;
+            color: #ffffff;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -460,11 +510,11 @@
 
         .profile-info h3 {
             font-size: 1.5rem;
-            color: #fff;
+            color: #0f172a;
         }
 
         .profile-info p {
-            color: #38bdf8;
+            color: #6366f1;
             font-size: 0.95rem;
         }
 
@@ -473,7 +523,7 @@
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(15, 23, 42, 0.4);
             backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
@@ -481,14 +531,15 @@
         }
 
         .modal-content {
-            background: #1e293b;
+            background: #ffffff;
             padding: 35px;
-            border-radius: 16px;
+            border-radius: 20px;
             width: 100%;
             max-width: 400px;
             text-align: center;
             position: relative;
-            border: 1px solid #334155;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
         .close-btn {
@@ -502,8 +553,8 @@
         .auth-tabs {
             display: flex;
             margin-bottom: 25px;
-            background: #0f172a;
-            border-radius: 8px;
+            background: #f1f5f9;
+            border-radius: 10px;
             padding: 4px;
         }
 
@@ -511,17 +562,17 @@
             flex: 1;
             background: transparent;
             border: none;
-            color: #94a3b8;
+            color: #64748b;
             padding: 10px;
             font-weight: 600;
             cursor: pointer;
-            border-radius: 6px;
+            border-radius: 8px;
             transition: 0.3s;
         }
 
         .auth-tab-btn.active {
-            background: #38bdf8;
-            color: #0f172a;
+            background: #6366f1;
+            color: #ffffff;
         }
 
         .auth-form {
@@ -540,31 +591,33 @@
         .form-group label {
             display: block;
             font-size: 0.85rem;
-            color: #94a3b8;
+            color: #475569;
             margin-bottom: 5px;
+            font-weight: 600;
         }
 
-        .form-group input, .form-group select {
+        .form-group input {
             width: 100%;
             padding: 12px;
-            background: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            color: #fff;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            color: #0f172a;
             outline: none;
         }
 
-        .form-group input:focus, .form-group select:focus {
-            border-color: #38bdf8;
+        .form-group input:focus {
+            border-color: #6366f1;
+            background: #ffffff;
         }
 
         .submit-btn {
-            background: #38bdf8;
-            color: #0f172a;
+            background: #6366f1;
+            color: #ffffff;
             border: none;
             width: 100%;
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 700;
             cursor: pointer;
             margin-top: 10px;
@@ -572,13 +625,13 @@
         }
 
         .submit-btn:hover {
-            background: #0ea5e9;
+            background: #4f46e5;
         }
 
         .new-account-link-btn {
             background: transparent;
             border: none;
-            color: #38bdf8;
+            color: #6366f1;
             font-size: 0.85rem;
             margin-top: 15px;
             cursor: pointer;
@@ -590,7 +643,7 @@
             color: #fff;
             border: none;
             padding: 10px 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
             margin-top: 20px;
@@ -603,6 +656,10 @@
     </style>
 </head>
 <body>
+
+    <!-- Sağda ve Solda Yürüyen Beyaz Kurtlar -->
+    <div class="mini-wolf wolf-left">🐺</div>
+    <div class="mini-wolf wolf-right">🐺</div>
 
     <!-- Üst Menü -->
     <header>
@@ -636,18 +693,18 @@
                 <i class="fa-solid fa-copy"></i>
             </div>
             <br>
-            <span id="kopyaBilgi" style="display:none; color: #4ade80; font-size: 14px; margin-top: -20px; margin-bottom: 25px; font-weight: 600;">IP Kopyalandı!</span>
+            <span id="kopyaBilgi" style="display:none; color: #16a34a; font-size: 14px; margin-top: -20px; margin-bottom: 25px; font-weight: 600;">IP Kopyalandı!</span>
 
             <div class="online-billboard">
                 <div class="online-dot"></div>
-                <span>Anlık Aktif Oyuncu: <strong id="onlineCount" style="color: #38bdf8;">142</strong> / 500</span>
+                <span>Anlık Aktif Oyuncu: <strong id="onlineCount" style="color: #6366f1;">142</strong> / 500</span>
             </div>
         </div>
     </section>
 
     <!-- 2. MAĞAZA VE BANKA -->
     <section id="magaza" class="page-section">
-        <h2 class="section-title"><i class="fa-solid fa-store" style="color: #38bdf8;"></i> Sunucu Mağazası</h2>
+        <h2 class="section-title"><i class="fa-solid fa-store" style="color: #6366f1;"></i> Sunucu Mağazası</h2>
         
         <div class="shop-container">
             <div>
@@ -726,8 +783,8 @@
                 </div>
 
                 <div class="bank-section">
-                    <h3 style="color: #fff; margin-bottom: 5px;"><i class="fa-solid fa-building-columns" style="color: #38bdf8;"></i> Havale / EFT ile Ödeme Bilgileri</h3>
-                    <p style="color: #94a3b8; font-size: 0.9rem;">Ödemenizi anlaşmalı banka hesaplarımıza yapabilirsiniz.</p>
+                    <h3 style="color: #0f172a; margin-bottom: 5px;"><i class="fa-solid fa-building-columns" style="color: #6366f1;"></i> Havale / EFT ile Ödeme Bilgileri</h3>
+                    <p style="color: #64748b; font-size: 0.9rem;">Ödemenizi anlaşmalı banka hesaplarımıza yapabilirsiniz.</p>
                     
                     <div class="bank-grid">
                         <div class="bank-card">
@@ -773,15 +830,15 @@
         <div class="content-box">
             <div class="rank-item">
                 <span>🥇 1. Oyuncu: <strong>KaanYurdakul</strong></span>
-                <span style="color: #38bdf8;">Ada Seviyesi: 1,450,200</span>
+                <span style="color: #6366f1;">Ada Seviyesi: 1,450,200</span>
             </div>
             <div class="rank-item">
                 <span>🥈 2. Oyuncu: <strong>Nelvoka</strong></span>
-                <span style="color: #38bdf8;">Ada Seviyesi: 1,120,000</span>
+                <span style="color: #6366f1;">Ada Seviyesi: 1,120,000</span>
             </div>
             <div class="rank-item">
                 <span>🥉 3. Oyuncu: <strong>ProGamerTR</strong></span>
-                <span style="color: #38bdf8;">Ada Seviyesi: 950,400</span>
+                <span style="color: #6366f1;">Ada Seviyesi: 950,400</span>
             </div>
         </div>
     </section>
@@ -816,11 +873,8 @@
                     <p>Yurdakul Network Oyuncusu</p>
                 </div>
             </div>
-            <div style="display: flex; flex-direction: column; gap: 15px; color: #cbd5e1; font-size: 0.95rem;">
-                <div><strong>Şahsi Ad Soyad:</strong> <span id="profilAdSoyad">-</span></div>
-                <div><strong>TC Kimlik No:</strong> <span id="profilTc">-</span></div>
-                <div><strong>Doğum Tarihi:</strong> <span id="profilDogum">-</span></div>
-                <div><strong>Cinsiyet:</strong> <span id="profilCinsiyet">-</span></div>
+            <div style="display: flex; flex-direction: column; gap: 15px; color: #475569; font-size: 0.95rem;">
+                <div><strong>Kayıtlı Ad Soyad:</strong> <span id="profilAdSoyad">-</span></div>
             </div>
             <button class="logout-btn" onclick="cikisYap()"><i class="fa-solid fa-right-from-bracket"></i> Hesaptan Çıkış Yap</button>
         </div>
@@ -861,24 +915,8 @@
                     <input type="password" id="kayitSifre" placeholder="••••••••" required>
                 </div>
                 <div class="form-group">
-                    <label>Şahsi Ad Soyad</label>
+                    <label>Ad Soyad</label>
                     <input type="text" id="kayitAdSoyad" placeholder="Adınız Soyadınız" required>
-                </div>
-                <div class="form-group">
-                    <label>TC Kimlik No</label>
-                    <input type="text" id="kayitTc" maxlength="11" placeholder="11 haneli TC No" required>
-                </div>
-                <div class="form-group">
-                    <label>Doğum Tarihi</label>
-                    <input type="date" id="kayitDogum" required>
-                </div>
-                <div class="form-group">
-                    <label>Cinsiyet Tercihi</label>
-                    <select id="kayitCinsiyet" required>
-                        <option value="Belirtmek İstemiyorum">Belirtmek İstemiyorum</option>
-                        <option value="Erkek">Erkek</option>
-                        <option value="Kadın">Kadın</option>
-                    </select>
                 </div>
                 <button type="submit" class="submit-btn">Kayıt Ol ve Tamamla</button>
             </form>
@@ -893,7 +931,6 @@
 
         window.onload = function() {
             kullaniciArayuzunuGuncelle();
-            // Siteye ilk kez giren kişiye modal otomatik açılır ve Kayıt sekmesi gösterilir
             if (!islemDurumuKayitli) {
                 sekmeDegistir('kayit');
                 modalAc();
@@ -998,7 +1035,6 @@
             }
         }
 
-        // Farklı hesap eklemek/yeni kayıt olmak istenildiğinde tetiklenir
         function farkliHesapAc() {
             document.getElementById("modalTabsContainer").style.display = "flex";
             sekmeDegistir('kayit');
@@ -1008,15 +1044,9 @@
             event.preventDefault();
             const nick = document.getElementById("kayitNick").value;
             const adSoyad = document.getElementById("kayitAdSoyad").value;
-            const tc = document.getElementById("kayitTc").value;
-            const dogum = document.getElementById("kayitDogum").value;
-            const cinsiyet = document.getElementById("kayitCinsiyet").value;
 
             localStorage.setItem('oyuncuNick', nick);
             localStorage.setItem('oyuncuAdSoyad', adSoyad);
-            localStorage.setItem('oyuncuTc', tc);
-            localStorage.setItem('oyuncuDogum', dogum);
-            localStorage.setItem('oyuncuCinsiyet', cinsiyet);
             localStorage.setItem('hesapKayitliMi', 'true');
 
             aktifKullanici = nick;
@@ -1041,9 +1071,6 @@
             document.getElementById("profilNick").innerText = aktifKullanici;
             document.getElementById("profilHarf").innerText = aktifKullanici.charAt(0).toUpperCase();
             document.getElementById("profilAdSoyad").innerText = localStorage.getItem('oyuncuAdSoyad') || 'Kayıtlı Değil';
-            document.getElementById("profilTc").innerText = localStorage.getItem('oyuncuTc') || '***********';
-            document.getElementById("profilDogum").innerText = localStorage.getItem('oyuncuDogum') || '0000-00-00';
-            document.getElementById("profilCinsiyet").innerText = localStorage.getItem('oyuncuCinsiyet') || 'Belirtmek İstemiyorum';
             sayfaGoster('profil');
         }
 
@@ -1058,20 +1085,18 @@
             const tabsContainer = document.getElementById("modalTabsContainer");
 
             if (islemDurumuKayitli) {
-                // Kayıt yapıldıktan sonra Kayıt Ol butonu ve sekmesi tamamen kalkar, sadece Giriş kalır
                 btn.innerText = "👤 " + aktifKullanici;
-                btn.style.background = "#4ade80";
-                btn.style.color = "#0f172a";
+                btn.style.background = "#22c55e";
+                btn.style.color = "#ffffff";
                 btn.setAttribute("onclick", "profilSayfasinaGit()");
                 profilLink.style.display = "inline";
 
-                // Sekme alanını gizle, doğrudan giriş formunu ve farklı hesap açma linkini aktif tut
                 tabsContainer.style.display = "none";
                 sekmeDegistir('giris');
             } else {
                 btn.innerText = "Kayıt Ol";
-                btn.style.background = "#38bdf8";
-                btn.style.color = "#0f172a";
+                btn.style.background = "#6366f1";
+                btn.style.color = "#ffffff";
                 btn.setAttribute("onclick", "modalAc()");
                 profilLink.style.display = "none";
                 tabsContainer.style.display = "flex";
