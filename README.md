@@ -1,2 +1,0 @@
-# SkyBlock
-Site
