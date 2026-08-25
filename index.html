@@ -15,7 +15,6 @@
             --text-muted: #94a3b8;
             --danger: #ef4444;
             --success: #22c55e;
-            --drawer-bg: #0f172a;
         }
 
         * {
@@ -92,7 +91,6 @@
             background: rgba(245, 158, 11, 0.1);
         }
 
-        /* User Profile Pill in Nav */
         .user-pill {
             display: flex;
             align-items: center;
@@ -104,14 +102,8 @@
             cursor: pointer;
             transition: 0.2s;
         }
-        .user-pill:hover {
-            background: rgba(59, 130, 246, 0.3);
-        }
-        .user-pill img {
-            width: 28px;
-            height: 28px;
-            border-radius: 4px;
-        }
+        .user-pill:hover { background: rgba(59, 130, 246, 0.3); }
+        .user-pill img { width: 28px; height: 28px; border-radius: 4px; }
 
         /* Container */
         .container {
@@ -157,7 +149,7 @@
         }
         .ip-copy:hover { transform: scale(1.05); }
 
-        /* --- SAĞA YASLI PROFİL / KONTROL ÇEKMECESİ (DRAWER) --- */
+        /* --- SAĞ KAYAR MENÜ (DRAWER) --- */
         .drawer-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -183,7 +175,6 @@
         .drawer-overlay.open { display: flex; }
         .drawer-overlay.open .drawer { transform: translateX(0); }
 
-        /* Drawer Header (Mavi Bölüm) */
         .drawer-header {
             background: #3b82f6;
             padding: 25px 20px;
@@ -206,32 +197,20 @@
             background: #1e293b;
         }
 
-        .drawer-user-text h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-        }
-
-        .drawer-user-text span {
-            font-size: 0.85rem;
-            opacity: 0.85;
-        }
+        .drawer-user-text h3 { font-size: 1.15rem; font-weight: 700; }
+        .drawer-user-text span { font-size: 0.85rem; opacity: 0.85; }
 
         .drawer-close-btn {
             background: rgba(255, 255, 255, 0.2);
             border: none;
-            width: 32px;
-            height: 32px;
+            width: 32px; height: 32px;
             border-radius: 50%;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: white; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
             transition: 0.2s;
         }
         .drawer-close-btn:hover { background: rgba(255, 255, 255, 0.4); }
 
-        /* Drawer Menü Listesi */
         .drawer-menu {
             list-style: none;
             padding: 10px 0;
@@ -249,33 +228,12 @@
             font-size: 0.95rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             transition: background 0.2s;
+            cursor: pointer;
         }
+        .drawer-menu li a:hover { background: rgba(255, 255, 255, 0.04); }
 
-        .drawer-menu li a:hover {
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        .drawer-menu-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .drawer-menu-left i {
-            width: 20px;
-            text-align: center;
-            color: var(--text-muted);
-        }
-
-        .drawer-menu li.active-tab a {
-            background: rgba(34, 197, 94, 0.1);
-            border-left: 4px solid var(--success);
-        }
-
-        .drawer-menu li.active-tab i, .drawer-menu li.active-tab span {
-            color: var(--success);
-            font-weight: 600;
-        }
+        .drawer-menu-left { display: flex; align-items: center; gap: 15px; }
+        .drawer-menu-left i { width: 20px; text-align: center; color: var(--text-muted); }
 
         .menu-right-val {
             display: flex;
@@ -285,22 +243,43 @@
             font-weight: 600;
             font-size: 0.9rem;
         }
+        .status-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; }
+        .drawer-menu li.logout a { color: var(--danger); }
+        .drawer-menu li.logout i { color: var(--danger); }
 
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--success);
-            border-radius: 50%;
+        /* Store Grid */
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
+        .store-item {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .store-item img { width: 70px; height: 70px; object-fit: contain; margin: 0 auto 15px; }
 
-        .drawer-menu li.logout a {
-            color: var(--danger);
+        .btn {
+            background: var(--primary);
+            color: #000;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            width: 100%;
         }
-        .drawer-menu li.logout i {
-            color: var(--danger);
-        }
+        .btn:hover { background: var(--primary-hover); }
 
-        /* Modals (Giriş / Kayıt Ol) */
+        /* Modals */
         .modal {
             display: none;
             position: fixed;
@@ -318,18 +297,23 @@
             text-align: center;
             border: 1px solid rgba(255,255,255,0.1);
         }
-        .btn {
-            background: var(--primary);
-            color: #000;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-            width: 100%;
+        .bank-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
         }
-        .btn:hover { background: var(--primary-hover); }
+        .bank-btn {
+            background: #334155;
+            color: white;
+            border: 1px solid #475569;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: 600;
+        }
+        .bank-btn:hover { background: var(--primary); color: black; }
 
         .auth-switch {
             margin-top: 15px;
@@ -359,129 +343,131 @@
             <a href="#" class="logo"><i class="fa-solid fa-cube"></i> Yurdakul Network</a>
             <ul class="nav-links">
                 <li><a onclick="switchPage('home')" class="active" id="nav-home">Ana Sayfa</a></li>
-                <li><a onclick="switchPage('store')">Mağaza</a></li>
-                <li><a onclick="switchPage('stats')">İstatistikler</a></li>
-                <!-- Sağ Menüyü Açan Profil Butonu -->
+                <li><a onclick="switchPage('store')" id="nav-store">Mağaza</a></li>
+                <li><a onclick="switchPage('inventory')" id="nav-inventory">Sandık (Envanter)</a></li>
                 <li>
                     <div class="user-pill" onclick="toggleDrawer(true)">
                         <img src="https://minotar.net/avatar/Pund1k/100.png" alt="Avatar">
-                        <span style="font-weight: 600; font-size: 0.9rem;">Pund'1k</span>
+                        <span style="font-weight: 600; font-size: 0.9rem;" id="nav-username">Pund'1k</span>
                     </div>
                 </li>
             </ul>
         </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Content -->
     <div class="container">
+        <!-- Home Page -->
         <div id="page-home" class="page active">
             <div class="hero-section">
                 <h1>YURDAKUL NETWORK SKYBLOCK</h1>
                 <p>Eşsiz Skyblock deneyimi, gelişmiş sistemler ve adil oyun yapısıyla seni bekliyor.</p>
                 <div class="ip-copy" onclick="copyIP()">
                     <i class="fa-solid fa-server"></i>
-                    <span id="ip-text">oyna.yurdakulnetwork.com</span>
+                    <span>oyna.yurdakulnetwork.com</span>
                     <i class="fa-regular fa-copy"></i>
                 </div>
             </div>
         </div>
+
+        <!-- Store Page -->
         <div id="page-store" class="page">
-            <h2>Mağaza İçeriği</h2>
-            <p style="color:var(--text-muted); margin-top:10px;">Mağaza ürünleri burada yer alıyor.</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h2>Mağaza Ürünleri</h2>
+                <div style="background:rgba(245,158,11,0.15); border:1px solid var(--primary); padding:6px 14px; border-radius:20px; font-weight:bold; color:var(--primary);">
+                    Bakiye: <span id="user-balance">40.00</span> ₺
+                </div>
+            </div>
+            <div class="store-grid">
+                <div class="store-item">
+                    <img src="https://minecraft.wiki/images/Chest_JE4_BE3.png" alt="SP">
+                    <div>
+                        <h4>Ucuz SP Paketi</h4>
+                        <p style="color:var(--text-muted); font-size:0.85rem; margin:5px 0;">10 ₺</p>
+                    </div>
+                    <button class="btn" onclick="buyItem('Ucuz SP Paketi', 10)">Satın Al</button>
+                </div>
+                <div class="store-item">
+                    <img src="https://minecraft.wiki/images/Ender_Chest_JE2_BE2.png" alt="Sandık">
+                    <div>
+                        <h4>Orta SP Sandık & Key</h4>
+                        <p style="color:var(--text-muted); font-size:0.85rem; margin:5px 0;">25 ₺</p>
+                    </div>
+                    <button class="btn" onclick="buyItem('Orta SP Sandık & Key', 25)">Satın Al</button>
+                </div>
+            </div>
         </div>
-        <div id="page-stats" class="page">
-            <h2>Sunucu İstatistikleri</h2>
-            <p style="color:var(--text-muted); margin-top:10px;">İstatistik verileri burada yer alıyor.</p>
+
+        <!-- Inventory Page -->
+        <div id="page-inventory" class="page">
+            <h2>Site Envanterim (Sandık)</h2>
+            <p style="color:var(--text-muted); margin:10px 0 20px 0;">Satın aldığın eşyalar burada birikir. Oyuna girdiğinde entegre edebilirsin.</p>
+            <div id="inventory-container" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:15px;">
+                <p style="color:var(--text-muted);">Sandığınızda henüz eşya bulunmuyor.</p>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- --- GÖRSELDEKİ SAĞ ÇEKMECE (DRAWER) MENÜSÜ --- -->
+<!-- --- SAĞ KAYAR MENÜ (DRAWER) --- -->
 <div class="drawer-overlay" id="drawerOverlay" onclick="handleDrawerOutsideClick(event)">
     <div class="drawer" id="drawerPanel">
-        <!-- Mavi Başlık Alanı -->
         <div class="drawer-header">
             <div class="drawer-user-info">
                 <img src="https://minotar.net/avatar/Pund1k/100.png" alt="Avatar">
                 <div class="drawer-user-text">
-                    <h3>Pund'1k</h3>
+                    <h3 id="drawer-name">Pund'1k</h3>
                     <span>Oyuncu</span>
                 </div>
             </div>
             <button class="drawer-close-btn" onclick="toggleDrawer(false)"><i class="fa-solid fa-xmark"></i></button>
         </div>
 
-        <!-- Menü Seçenekleri -->
         <ul class="drawer-menu">
+            <li><a href="#"><div class="drawer-menu-left"><i class="fa-solid fa-user"></i><span>Profil</span></div><i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i></a></li>
             <li>
-                <a href="#">
-                    <div class="drawer-menu-left"><i class="fa-solid fa-user"></i><span>Profil</span></div>
-                    <i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i>
-                </a>
-            </li>
-            <li class="active-tab">
                 <a href="#">
                     <div class="drawer-menu-left"><i class="fa-solid fa-wallet"></i><span>Bakiye</span></div>
                     <div class="menu-right-val">
-                        <span>40.00 ₺</span>
+                        <span id="drawer-balance">40.00</span> ₺
                         <div class="status-dot"></div>
-                        <i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted); margin-left: 5px;"></i>
                     </div>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <div class="drawer-menu-left"><i class="fa-solid fa-paper-plane"></i><span>Kredi Gönder</span></div>
-                    <i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="drawer-menu-left"><i class="fa-solid fa-box-archive"></i><span>Sandık (Site Envanteri)</span></div>
-                    <i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="drawer-menu-left"><i class="fa-solid fa-cart-shopping"></i><span>Sepet</span></div>
-                    <i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="drawer-menu-left"><i class="fa-solid fa-dharmachakra"></i><span>Çarkıfelek</span></div>
-                    <i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="drawer-menu-left"><i class="fa-solid fa-gift"></i><span>Hediye Gönder</span></div>
-                    <i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i>
-                </a>
-            </li>
-            <li class="logout">
-                <a href="#" onclick="logoutAction()">
-                    <div class="drawer-menu-left"><i class="fa-solid fa-right-from-bracket"></i><span>Çıkış Yap</span></div>
-                    <i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--danger);"></i>
-                </a>
-            </li>
+            <li><a onclick="switchPage('inventory'); toggleDrawer(false);"><div class="drawer-menu-left"><i class="fa-solid fa-box-archive"></i><span>Sandık</span></div><i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i></a></li>
+            <li><a onclick="switchPage('store'); toggleDrawer(false);"><div class="drawer-menu-left"><i class="fa-solid fa-cart-shopping"></i><span>Mağaza / Sepet</span></div><i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i></a></li>
+            <li class="logout"><a onclick="logoutAction()"><div class="drawer-menu-left"><i class="fa-solid fa-right-from-bracket"></i><span>Çıkış Yap</span></div><i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--danger);"></i></a></li>
         </ul>
     </div>
 </div>
 
-<!-- GİRİŞ YAP / KAYIT OL MODALI (İstediğin Kayıt Ol Alanı Eklendi) -->
+<!-- BANKA SEÇENEKLERİ MODALI (Satın alımda otomatik açılır) -->
+<div class="modal" id="bankModal">
+    <div class="modal-content">
+        <h3>Ödeme / Banka Seçimi</h3>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-top:5px;">İşlemi tamamlamak için ödeme yönteminizi seçin:</p>
+        <div class="bank-options">
+            <button class="bank-btn" onclick="completePurchase('Papara ile Ödeme')">Papara / Havale / EFT</button>
+            <button class="bank-btn" onclick="completePurchase('Kredi Kartı')">Kredi Kartı (3D Secure)</button>
+            <button class="bank-btn" onclick="completePurchase('İninal / Mobil')">İninal & Mobil Ödeme</button>
+        </div>
+        <button class="btn" style="background:var(--danger); color:white;" onclick="closeBankModal()">İptal Et</button>
+    </div>
+</div>
+
+<!-- GİRİŞ YAP / KAYIT OL MODALI (Kayıt ol seçeneği dahil) -->
 <div class="modal" id="authModal">
     <div class="modal-content">
         <h3 id="modalTitle">Oyuncu Girişi</h3>
         <p style="font-size:0.9rem; color:var(--text-muted); margin-top:5px;" id="modalDesc">Minecraft kullanıcı adınızı girerek sisteme bağlanın:</p>
         
-        <input type="text" id="usernameInput" placeholder="Kullanıcı Adınız" style="width:100%; padding:10px; margin:15px 0; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px;">
-        <input type="password" id="passInput" placeholder="Şifreniz" style="width:100%; padding:10px; margin-bottom:15px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px;">
+        <input type="text" id="userInput" placeholder="Kullanıcı Adı" style="width:100%; padding:10px; margin:15px 0; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px;">
+        <input type="password" id="passInput" placeholder="Şifre" style="width:100%; padding:10px; margin-bottom:15px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px;">
         
-        <button class="btn" id="modalBtn" onclick="handleAuthSubmit()">Giriş Yap</button>
+        <button class="btn" id="modalSubmitBtn" onclick="handleAuth()">Giriş Yap</button>
         
         <div class="auth-switch">
-            <span id="switchText">Hesabınız yok mu?</span> <a onclick="toggleAuthMode()" id="switchLink">Kayıt olun</a>
+            <span id="switchText">Hesabınız yok mu?</span> <a onclick="toggleAuthMode()" id="switchLink">Hemen kayıt olun</a>
         </div>
         
         <button class="btn" style="background:var(--danger); color:white; margin-top:15px;" onclick="closeAuthModal()">Kapat</button>
@@ -489,19 +475,28 @@
 </div>
 
 <script>
-    // Sayfa değiştirme
+    let userBalance = 40.00;
+    let userInventory = [];
+    let pendingItem = null;
+    let pendingPrice = 0;
+    let isRegisterMode = false;
+
+    // Sayfa Geçişleri
     function switchPage(pageId) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
         document.getElementById('page-' + pageId).classList.add('active');
+        if(document.getElementById('nav-' + pageId)) {
+            document.getElementById('nav-' + pageId).classList.add('active');
+        }
     }
 
-    // IP Kopyalama
     function copyIP() {
         navigator.clipboard.writeText("oyna.yurdakulnetwork.com");
         alert("Sunucu IP adresi kopyalandı!");
     }
 
-    // Sağ Çekmece (Drawer) Kontrolü
+    // Sağ Kayar Menü Kontrolü
     function toggleDrawer(isOpen) {
         const overlay = document.getElementById('drawerOverlay');
         if(isOpen) {
@@ -517,14 +512,67 @@
         }
     }
 
-    // Çıkış yapınca modal açma veya simüle etme
+    // Mağaza & Satın Alım & Banka Modalı Mantığı
+    function buyItem(itemName, price) {
+        if(userBalance < price) {
+            alert("Yetersiz bakiye! Lütfen bakiyenizi kontrol edin.");
+            return;
+        }
+        pendingItem = itemName;
+        pendingPrice = price;
+        document.getElementById('bankModal').style.display = 'flex';
+    }
+
+    function closeBankModal() {
+        document.getElementById('bankModal').style.display = 'none';
+    }
+
+    function completePurchase(bankName) {
+        // Bakiyeden düşme
+        userBalance -= pendingPrice;
+        document.getElementById('user-balance').innerText = userBalance.toFixed(2);
+        document.getElementById('drawer-balance').innerText = userBalance.toFixed(2);
+
+        // Site envanterine (sandığa) ekleme
+        userInventory.push(pendingItem);
+        updateInventoryUI();
+
+        closeBankModal();
+        alert(pendingItem + " başarıyla satın alındı ve Sandığınıza eklendi!");
+    }
+
+    function updateInventoryUI() {
+        const container = document.getElementById('inventory-container');
+        if(userInventory.length === 0) {
+            container.innerHTML = '<p style="color:var(--text-muted);">Sandığınızda henüz eşya bulunmuyor.</p>';
+            return;
+        }
+
+        container.innerHTML = '';
+        userInventory.forEach((item, index) => {
+            container.innerHTML += `
+                <div style="background:var(--card-bg); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:15px; text-align:center;">
+                    <h5>${item}</h5>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin:5px 0;">Durum: Beklemede</p>
+                    <button class="btn" style="background:var(--success); color:#fff; margin-top:8px;" onclick="integrateItem(${index})">Oyuna Entegre Et (✓)</button>
+                </div>
+            `;
+        });
+    }
+
+    function integrateItem(index) {
+        const item = userInventory[index];
+        userInventory.splice(index, 1);
+        updateInventoryUI();
+        alert("'" + item + "' başarıyla oyuna aktarıldı!");
+    }
+
+    // Giriş / Kayıt Modalı
     function logoutAction() {
         toggleDrawer(false);
         openAuthModal();
     }
 
-    // Giriş / Kayıt Modalı Mantığı
-    let isRegisterMode = false;
     function openAuthModal() {
         document.getElementById('authModal').style.display = 'flex';
     }
@@ -537,7 +585,7 @@
         isRegisterMode = !isRegisterMode;
         const title = document.getElementById('modalTitle');
         const desc = document.getElementById('modalDesc');
-        const btn = document.getElementById('modalBtn');
+        const btn = document.getElementById('modalSubmitBtn');
         const switchText = document.getElementById('switchText');
         const switchLink = document.getElementById('switchLink');
 
@@ -552,17 +600,19 @@
             desc.innerText = "Minecraft kullanıcı adınızı girerek sisteme bağlanın:";
             btn.innerText = "Giriş Yap";
             switchText.innerText = "Hesabınız yok mu?";
-            switchLink.innerText = "Kayıt olun";
+            switchLink.innerText = "Hemen kayıt olun";
         }
     }
 
-    function handleAuthSubmit() {
-        const val = document.getElementById('usernameInput').value;
-        if(val) {
+    function handleAuth() {
+        const uVal = document.getElementById('userInput').value;
+        if(uVal) {
+            document.getElementById('nav-username').innerText = uVal;
+            document.getElementById('drawer-name').innerText = uVal;
             alert(isRegisterMode ? "Kayıt işlemi başarılı!" : "Giriş yapıldı!");
             closeAuthModal();
         } else {
-            alert("Lütfen alanları doldurun.");
+            alert("Lütfen kullanıcı adını doldurun.");
         }
     }
 </script>
