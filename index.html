@@ -132,7 +132,6 @@
             text-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
         }
 
-        /* Son Kayıtlar / Canlı Bilboard Tasarımı */
         .bilboard-ticker {
             background: rgba(15, 23, 42, 0.85);
             border: 1px solid rgba(245, 158, 11, 0.3);
@@ -162,7 +161,6 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            animation: marquee 12s linear infinite;
         }
 
         .ip-copy {
@@ -180,7 +178,6 @@
         }
         .ip-copy:hover { transform: scale(1.05); }
 
-        /* Mağaza Kare Kategori Kartları */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -215,7 +212,6 @@
             font-weight: 600;
         }
 
-        /* Sağ Kayar Menü (Drawer) */
         .drawer-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -313,7 +309,6 @@
         .drawer-menu li.logout a { color: var(--danger); }
         .drawer-menu li.logout i { color: var(--danger); }
 
-        /* Store Grid & VIP Cards with Features */
         .store-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -343,7 +338,7 @@
             border-radius: 4px;
         }
         .store-item img { width: 60px; height: 60px; object-fit: contain; margin-bottom: 10px; }
-        
+
         .features-list {
             list-style: none;
             margin: 12px 0;
@@ -375,7 +370,6 @@
         }
         .btn:hover { background: var(--primary-hover); }
 
-        /* Modals */
         .modal {
             display: none;
             position: fixed;
@@ -412,7 +406,6 @@
         }
         .bank-btn:hover { background: var(--primary); color: black; }
 
-        /* Profil Sayfası */
         .profile-card {
             background: var(--card-bg);
             border: 1px solid rgba(255,255,255,0.08);
@@ -429,7 +422,6 @@
             border: 2px solid var(--primary);
         }
 
-        /* Giriş / Kayıt Sekmeleri */
         .auth-tabs {
             display: flex;
             background: #0f172a;
@@ -491,8 +483,7 @@
             <div class="hero-section">
                 <h1>YURDAKUL NETWORK SKYBLOCK</h1>
                 <p>Eşsiz Skyblock deneyimi, gelişmiş sistemler ve adil oyun yapısıyla seni bekliyor.</p>
-                
-                <!-- Canlı Son Kayıtlar / Satış Bilboardı -->
+
                 <div class="bilboard-ticker">
                     <span class="bilboard-badge"><i class="fa-solid fa-bullhorn"></i> Son Kayıtlar</span>
                     <div class="bilboard-content" id="ticker-text">
@@ -517,7 +508,6 @@
                 </div>
             </div>
 
-            <!-- Kare Kare Kategori Alanları -->
             <div class="category-grid">
                 <div class="category-card active" onclick="filterCategory('vips', this)">
                     <i class="fa-solid fa-crown"></i>
@@ -542,8 +532,7 @@
             </div>
 
             <h3 id="category-title" style="margin-bottom: 15px; border-left: 4px solid var(--primary); padding-left: 10px;">VIP Paketleri</h3>
-            
-            <!-- Ürün Listeleme Alanı -->
+
             <div class="store-grid" id="store-products"></div>
         </div>
 
@@ -675,7 +664,6 @@
     let userInventory = [];
     let currentUser = "Pund'1k";
 
-    // Tam İstediğin VIP Özellikleri, Kitleri, Hediyeleri ve Limitleri ile Veri Seti
     const storeData = {
         vips: [
             { 
@@ -740,85 +728,175 @@
             }
         ],
         keys: [
-            { name: "Skyblock Anahtar Kasası (3lü)", price: 30.00, oldPrice: "60.00 ₺", img: "https://minecraft.wiki/images/Tripwire_Hook_JE2_BE2.png", features: ["3 Adet Rastgele Kasa Anahtarı"] },
-            { name: "Efsanevi Kasa Anahtarı", price: 50.00, oldPrice: "100.00 ₺", img: "https://minecraft.wiki/images/Tripwire_Hook_JE2_BE2.png", features: ["1 Adet Efsanevi Kasa Anahtarı"] }
+            { name: "Skyblock Anahtar Kasası (3lü)", price: 30.00, oldPrice: "60.00 ₺", img: "https://minecraft.wiki/images/Tripwire_Hook_JE2_BE2.png", features: ["3 Adet Rastgele Kasa Anahtarı", "Oyun içi /sandik komutu ile teslimat"] },
+            { name: "Efsanevi Kasa Anahtarı", price: 45.00, oldPrice: "90.00 ₺", img: "https://minecraft.wiki/images/Tripwire_Hook_JE2_BE2.png", features: ["1 Adet Efsanevi Anahtar", "En yüksek değerli eşya çıkma şansı"] }
         ],
         spawners: [
-            { name: "İnek Spawner", price: 75.00, oldPrice: "150.00 ₺", img: "https://minecraft.wiki/images/Spawner_JE2_BE2.png", features: ["Ada içi inek üretimi sağlar"] },
-            { name: "Iron Golem Spawner", price: 250.00, oldPrice: "500.00 ₺", img: "https://minecraft.wiki/images/Spawner_JE2_BE2.png", features: ["Demir farmı için en iyi spawner"] }
+            { name: "İskelet Spawner", price: 50.00, oldPrice: "100.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["Adanıza yerleştirebilirsiniz", "Otomatik XP ve Kemik kasası"] },
+            { name: "Demir Golem Spawner", price: 150.00, oldPrice: "300.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["En yüksek değerli demir üretimi", "Ekonominin kalbi"] }
         ],
         fly: [
-            { name: "1 Aylık Ada Fly Yetkisi", price: 40.00, oldPrice: "80.00 ₺", img: "https://minecraft.wiki/images/Elytra_JE2_BE2.png", features: ["Adanızda 30 gün boyunca uçuş yetkisi"] },
-            { name: "Sınırsız Ada Fly Yetkisi", price: 150.00, oldPrice: "300.00 ₺", img: "https://minecraft.wiki/images/Elytra_JE2_BE2.png", features: ["Süresiz ada içi uçuş yetkisi"] }
+            { name: "Global Uçuş İzni (30 Gün)", price: 75.00, oldPrice: "150.00 ₺", img: "https://minecraft.wiki/images/Elytra_JE2_BE2.png", features: ["Tüm dünyalarda /fly komutu aktif", "Süre sınırı olmadan uçuş ayrıcalığı"] }
         ],
         autobreak: [
-            { name: "30 Günlük Oto Kırma", price: 60.00, oldPrice: "120.00 ₺", img: "https://minecraft.wiki/images/Diamond_Pickaxe_JE3_BE3.png", features: ["30 Gün boyunca otomatik blok kırma sistemi"] }
+            { name: "Oto Kırma Yetkisi (30 Gün)", price: 90.00, oldPrice: "180.00 ₺", img: "https://minecraft.wiki/images/Netherite_Pickaxe_JE3_BE3.png", features: ["Ada kazılarında otomatik taş kırıcı", "Hızlı level atlama imkanı"] }
         ]
-    };
-
-    function filterCategory(categoryKey, element) {
-        document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
-        element.classList.add('active');
-
-        const titles = {
-            vips: "VIP Paketleri",
-            keys: "Anahtarlar",
-            spawners: "Spawnerlar",
-            fly: "Uçma (Fly) Yetkileri",
-            autobreak: "Oto Kırma Yetkileri"
-        };
-        document.getElementById('category-title').innerText = titles[categoryKey];
-
-        const container = document.getElementById('store-products');
-        container.innerHTML = "";
-
-        storeData[categoryKey].forEach(item => {
-            let featuresHtml = '';
-            if(item.features) {
-                featuresHtml = '<ul class="features-list">';
-                item.features.forEach(f => {
-                    featuresHtml += `<li><i class="fa-solid fa-check"></i> ${f}</li>`;
-                });
-                featuresHtml += '</ul>';
-            }
-
-            container.innerHTML += `
-                <div class="store-item">
-                    <div class="discount-badge">50%</div>
-                    <img src="${item.img}" alt="${item.name}">
-                    <div>
-                        <h4 style="font-size:1.05rem; font-weight:700;">${item.name}</h4>
-                        <p style="color:var(--text-muted); font-size:0.8rem; text-decoration:line-through; margin-top:3px;">${item.oldPrice}</p>
-                        <p style="color:var(--success); font-weight:bold; font-size:1.1rem; margin:2px 0 8px 0;">${item.price.toFixed(2)} ₺</p>
-                        ${featuresHtml}
-                    </div>
-                    <button class="btn" style="margin-top:12px;" onclick="addToCart('${item.name}', ${item.price})">Sepete Ekle</button>
-                </div>
-            `;
-        });
-    }
-
-    window.onload = function() {
-        filterCategory('vips', document.querySelector('.category-card'));
     };
 
     function switchPage(pageId) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        
         document.getElementById('page-' + pageId).classList.add('active');
-        if(document.getElementById('nav-' + pageId)) {
-            document.getElementById('nav-' + pageId).classList.add('active');
+        const navEl = document.getElementById('nav-' + pageId);
+        if(navEl) navEl.classList.add('active');
+
+        if(pageId === 'store') filterCategory('vips', document.querySelector('.category-card'));
+        if(pageId === 'cart') renderCart();
+        if(pageId === 'inventory') renderInventory();
+    }
+
+    function filterCategory(categoryKey, element) {
+        document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
+        if(element) element.classList.add('active');
+
+        const products = storeData[categoryKey] || [];
+        const container = document.getElementById('store-products');
+        const titleEl = document.getElementById('category-title');
+        
+        if(element && element.querySelector('h3')) {
+            titleEl.innerText = element.querySelector('h3').innerText;
+        }
+
+        container.innerHTML = '';
+        products.forEach((prod, idx) => {
+            let featuresHtml = prod.features.map(f => `<li><i class="fa-solid fa-check"></i> ${f}</li>`).join('');
+            container.innerHTML += `
+                <div class="store-item">
+                    <span class="discount-badge">${prod.oldPrice}</span>
+                    <img src="${prod.img}" alt="${prod.name}">
+                    <h4 style="font-size:1rem; margin-bottom:5px;">${prod.name}</h4>
+                    <ul class="features-list">${featuresHtml}</ul>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
+                        <span style="font-weight:bold; color:var(--success); font-size:1.1rem;">${prod.price.toFixed(2)} ₺</span>
+                        <button class="btn" style="width:auto; padding:8px 14px;" onclick="addToCart('${categoryKey}', ${idx})">Sepete Ekle</button>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    function addToCart(cat, index) {
+        const item = storeData[cat][index];
+        cart.push(item);
+        document.getElementById('cart-count').innerText = cart.length;
+        alert(item.name + " sepetinize eklendi!");
+    }
+
+    function renderCart() {
+        const container = document.getElementById('cart-items-container');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const totalPriceEl = document.getElementById('cart-total-price');
+
+        if(cart.length === 0) {
+            container.innerHTML = '<p style="color:var(--text-muted);">Sepetinizde henüz ürün bulunmuyor.</p>';
+            totalPriceEl.innerText = '0.00';
+            checkoutBtn.style.display = 'none';
+            return;
+        }
+
+        let html = '';
+        let total = 0;
+        cart.forEach((item, index) => {
+            total += item.price;
+            html += `
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <img src="${item.img}" style="width:35px; height:35px; object-fit:contain;">
+                        <span>${item.name}</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:15px;">
+                        <span style="color:var(--success); font-weight:bold;">${item.price.toFixed(2)} ₺</span>
+                        <button style="background:var(--danger); color:white; border:none; padding:5px 8px; border-radius:4px; cursor:pointer;" onclick="removeFromCart(${index})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+        totalPriceEl.innerText = total.toFixed(2);
+        checkoutBtn.style.display = 'block';
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        document.getElementById('cart-count').innerText = cart.length;
+        renderCart();
+    }
+
+    function proceedCheckout() {
+        let total = cart.reduce((sum, item) => sum + item.price, 0);
+        if(userBalance >= total) {
+            userBalance -= total;
+            userInventory.push(...cart);
+            cart = [];
+            document.getElementById('cart-count').innerText = 0;
+            updateBalances();
+            alert("Ödeme başarıyla tamamlandı! Ürünleriniz sandığınıza (envantere) eklendi.");
+            switchPage('inventory');
+        } else {
+            document.getElementById('bankModal').style.display = 'flex';
         }
     }
 
-    function copyIP() {
-        navigator.clipboard.writeText("oyna.yurdakulnetwork.com");
-        alert("Sunucu IP adresi kopyalandı!");
+    function closeBankModal() {
+        document.getElementById('bankModal').style.display = 'none';
     }
 
-    function toggleDrawer(isOpen) {
+    function completePayment(bankName) {
+        let total = cart.reduce((sum, item) => sum + item.price, 0);
+        userBalance += (total + 50); // Simulating deposit covering the cost plus bonus
+        updateBalances();
+        closeBankModal();
+        alert(bankName + " üzerinden bakiye yüklendi. Şimdi işleminiz onaylanıyor...");
+        proceedCheckout();
+    }
+
+    function updateBalances() {
+        document.getElementById('user-balance').innerText = userBalance.toFixed(2);
+        document.getElementById('profile-balance').innerText = userBalance.toFixed(2);
+        document.getElementById('drawer-balance').innerText = userBalance.toFixed(2);
+    }
+
+    function renderInventory() {
+        const container = document.getElementById('inventory-container');
+        if(userInventory.length === 0) {
+            container.innerHTML = '<p style="color:var(--text-muted);">Sandığınızda henüz eşya bulunmuyor.</p>';
+            return;
+        }
+
+        let html = '';
+        userInventory.forEach((item, index) => {
+            html += `
+                <div style="background:var(--card-bg); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:15px; text-align:center;">
+                    <img src="${item.img}" style="width:50px; height:50px; object-fit:contain; margin-bottom:10px;">
+                    <h4 style="font-size:0.95rem; margin-bottom:8px;">${item.name}</h4>
+                    <button class="btn" style="padding:6px; font-size:0.8rem; background:var(--success); color:white;" onclick="claimItem(${index})">Oyuna Gönder</button>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    function claimItem(index) {
+        let item = userInventory.splice(index, 1)[0];
+        alert(item.name + " başarıyla oyun içindeki hesabınıza teslim edildi!");
+        renderInventory();
+    }
+
+    function toggleDrawer(open) {
         const overlay = document.getElementById('drawerOverlay');
-        if(isOpen) {
+        if(open) {
             overlay.classList.add('open');
         } else {
             overlay.classList.remove('open');
@@ -831,281 +909,77 @@
         }
     }
 
-    function addToCart(name, price) {
-        cart.push({ name, price });
-        updateCartUI();
-        alert("'" + name + "' sepete eklendi!");
-    }
-
-    function updateCartUI() {
-        document.getElementById('cart-count').innerText = cart.length;
-        const container = document.getElementById('cart-items-container');
-        const checkoutBtn = document.getElementById('checkout-btn');
-
-        if(cart.length === 0) {
-            container.innerHTML = '<p style="color:var(--text-muted);">Sepetinizde henüz ürün bulunmuyor.</p>';
-            document.getElementById('cart-total-price').innerText = "0.00";
-            checkoutBtn.style.display = 'none';
-            return;
-        }
-
-        container.innerHTML = '';
-        let total = 0;
-        cart.forEach((item, index) => {
-            total += item.price;
-            container.innerHTML += `
-                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
-                    <div>
-                        <h4 style="font-size:1rem;">${item.name}</h4>
-                        <span style="color:var(--success); font-weight:bold;">${item.price.toFixed(2)} ₺</span>
-                    </div>
-                    <button class="btn" style="width:auto; background:var(--danger); color:white; padding:5px 10px; font-size:0.8rem;" onclick="removeFromCart(${index})">Kaldır</button>
-                </div>
-            `;
-        });
-
-        document.getElementById('cart-total-price').innerText = total.toFixed(2);
-        checkoutBtn.style.display = 'block';
-    }
-
-    function removeFromCart(index) {
-        cart.splice(index, 1);
-        updateCartUI();
-    }
-
-    function proceedCheckout() {
-        let total = cart.reduce((sum, item) => sum + item.price, 0);
-
-        if(userBalance < total) {
-            document.getElementById('modal-desc').innerText = `Yetersiz bakiye! Toplam tutar: ${total.toFixed(2)} ₺ (Mevcut Bakiye: ${userBalance.toFixed(2)} ₺). Lütfen ödeme yöntemi seçin:`;
-            document.getElementById('bankModal').style.display = 'flex';
-        } else {
-            userBalance -= total;
-            updateBalances();
-
-            cart.forEach(item => userInventory.push(item.name));
-            cart = [];
-            updateCartUI();
-            updateInventoryUI();
-
-            alert("Ödeme başarıyla tamamlandı! Ürünleriniz sandığınıza (envantere) eklendi.");
-        }
-    }
-
-    function closeBankModal() {
-        document.getElementById('bankModal').style.display = 'none';
-    }
-
-    function completePayment(bankName) {
-        let total = cart.reduce((sum, item) => sum + item.price, 0);
-        userBalance += total; 
-        userBalance -= total; 
-
-        updateBalances();
-        cart.forEach(item => userInventory.push(item.name));
-        cart = [];
-        updateCartUI();
-        updateInventoryUI();
-
-        closeBankModal();
-        alert(bankName + " ile ödeme onaylandı, sepetinizdeki ürünler sandığınıza eklendi!");
-    }
-
-    function updateBalances() {
-        document.getElementById('user-balance').innerText = userBalance.toFixed(2);
-        document.getElementById('drawer-balance').innerText = userBalance.toFixed(2);
-        document.getElementById('profile-balance').innerText = userBalance.toFixed(2);
-    }
-
-    function updateInventoryUI() {
-        const container = document.getElementById('inventory-container');
-        if(userInventory.length === 0) {
-            container.innerHTML = '<p style="color:var(--text-muted);">Sandığınızda henüz eşya bulunmuyor.</p>';
-            return;
-        }
-
-        container.innerHTML = '';
-        userInventory.forEach((item, index) => {
-            container.innerHTML += `
-                <div style="background:var(--card-bg); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:15px; text-align:center;">
-                    <h5>${item}</h5>
-                    <p style="font-size:0.8rem; color:var(--text-muted); margin:5px 0;">Durum: Beklemede</p>
-                    <button class="btn" style="background:var(--success); color:#fff; margin-top:8px;" onclick="integrateItem(${index})">Oyuna Entegre Et (✓)</button>
-                </div>
-            `;
-        });
-    }
-
-    function integrateItem(index) {
-        const item = userInventory[index];
-        userInventory.splice(index, 1);
-        updateInventoryUI();
-        alert("'" + item + "' başarıyla oyuna aktarıldı!");
+    function copyIP() {
+        navigator.clipboard.writeText("oyna.yurdakulnetwork.com");
+        alert("Sunucu IP adresi kopyalandı: oyna.yurdakulnetwork.com");
     }
 
     function saveProfileCustomization() {
-        const val = document.getElementById('customTitleInput').value;
-        if(val) {
-            alert("Profil başarıyla kişiselleştirildi: " + val);
+        const msg = document.getElementById('customTitleInput').value;
+        if(msg) {
+            alert("Profil durum mesajınız güncellendi: " + msg);
         } else {
-            alert("Lütfen bir durum mesajı yazın.");
+            alert("Lütfen geçerli bir durum mesajı yazın.");
         }
     }
 
     function logoutAction() {
-        toggleDrawer(false);
-        openAuthModal();
-    }
-
-    function openAuthModal() {
         document.getElementById('authModal').style.display = 'flex';
+        toggleDrawer(false);
     }
 
     function closeAuthModal() {
         document.getElementById('authModal').style.display = 'none';
     }
 
-    function switchAuthTab(tabName) {
-        const loginBtn = document.getElementById('tabLoginBtn');
-        const regBtn = document.getElementById('tabRegisterBtn');
-        const loginBox = document.getElementById('loginFormContainer');
-        const regBox = document.getElementById('registerFormContainer');
+    function switchAuthTab(tab) {
+        document.getElementById('tabLoginBtn').classList.remove('active');
+        document.getElementById('tabRegisterBtn').classList.remove('active');
+        document.getElementById('loginFormContainer').classList.remove('active');
+        document.getElementById('registerFormContainer').classList.remove('active');
 
-        if(tabName === 'login') {
-            loginBtn.classList.add('active');
-            regBtn.classList.remove('active');
-            loginBox.classList.add('active');
-            regBox.classList.remove('active');
+        if(tab === 'login') {
+            document.getElementById('tabLoginBtn').classList.add('active');
+            document.getElementById('loginFormContainer').classList.add('active');
         } else {
-            regBtn.classList.add('active');
-            loginBtn.classList.remove('active');
-            regBox.classList.add('active');
-            loginBox.classList.remove('active');
+            document.getElementById('tabRegisterBtn').classList.add('active');
+            document.getElementById('registerFormContainer').classList.add('active');
         }
     }
 
     function handleLogin() {
-        const uVal = document.getElementById('loginUser').value;
-        if(uVal) {
-            currentUser = uVal;
-            updateUserUI(uVal);
-            alert("Giriş yapıldı: " + uVal);
+        const user = document.getElementById('loginUser').value;
+        if(user) {
+            currentUser = user;
+            document.getElementById('nav-username').innerText = user;
+            document.getElementById('drawer-name').innerText = user;
+            document.getElementById('profile-username').innerText = user;
+            document.querySelectorAll('img[alt="Avatar"]').forEach(img => {
+                img.src = `https://minotar.net/avatar/${user}/100.png`;
+            });
             closeAuthModal();
-        } else {
-            alert("Lütfen kullanıcı adını girin.");
-        }
-    }
-
-    function handleRegister() {
-        const uVal = document.getElementById('regUser').value;
-        if(uVal) {
-            currentUser = uVal;
-            updateUserUI(uVal);
-            alert("Kayıt olundu ve profil oluşturuldu: " + uVal);
-            closeAuthModal();
+            alert("Başarıyla giriş yapıldı: " + user);
         } else {
             alert("Lütfen kullanıcı adınızı girin.");
         }
     }
 
-    function updateUserUI(name) {
-        document.getElementById('nav-username').innerText = name;
-        document.getElementById('drawer-name').innerText = name;
-        document.getElementById('profile-username').innerText = name;
-        const newAvatar = `https://minotar.net/avatar/${name}/100.png`;
-        document.querySelector('.user-pill img').src = newAvatar;
-        document.getElementById('drawer-avatar-img').src = newAvatar;
-        document.getElementById('profile-avatar-img').src = newAvatar;
+    function handleRegister() {
+        const user = document.getElementById('regUser').value;
+        if(user) {
+            currentUser = user;
+            document.getElementById('nav-username').innerText = user;
+            document.getElementById('drawer-name').innerText = user;
+            document.getElementById('profile-username').innerText = user;
+            document.querySelectorAll('img[alt="Avatar"]').forEach(img => {
+                img.src = `https://minotar.net/avatar/${user}/100.png`;
+            });
+            closeAuthModal();
+            alert("Kayıt oluşturuldu ve giriş yapıldı: " + user);
+        } else {
+            alert("Lütfen geçerli bir kullanıcı adı girin.");
+        }
     }
 </script>
 </body>
-</html> 
-<div class="yurdakul-network-wrapper bg-[#0b0b0e] text-white min-h-screen">
-    
-    <!-- Üst Menü Entegrasyonu -->
-    <header class="w-full bg-[#0b0b0e] border-b border-zinc-800/50 px-6 py-4 flex items-center justify-between">
-        <div class="flex items-center space-x-10">
-            <div class="flex items-center space-x-3 cursor-pointer">
-                <div class="w-10 h-10 bg-amber-600 rounded flex items-center justify-center font-bold text-lg shadow-lg shadow-amber-600/20">
-                    <span class="text-amber-200">MC</span>
-                </div>
-            </div>
-            <nav class="hidden xl:flex items-center space-x-6 text-sm font-medium text-zinc-300">
-                <a href="#" class="hover:text-white transition">Anasayfa</a>
-                <a href="#" class="hover:text-white transition">Oyunlar</a>
-                <a href="#" class="text-fuchsia-400 font-semibold transition">Kredi Satın Al</a>
-                <a href="#" class="hover:text-white transition">Mağaza</a>
-                <a href="#" class="hover:text-white transition">Destek</a>
-                <a href="#" class="hover:text-white transition">Yetkili Başvuru</a>
-                <a href="#" class="hover:text-white transition">Cezalar</a>
-                <a href="#" class="hover:text-white transition">AFK Client</a>
-                <a href="#" class="hover:text-white transition">İndir</a>
-            </nav>
-        </div>
-
-        <div class="flex items-center space-x-6">
-            <div class="relative cursor-pointer">
-                <svg class="w-6 h-6 text-zinc-300 hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                <span class="absolute -top-2 -right-2 bg-emerald-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
-            </div>
-            <div class="border-l border-zinc-800 pl-6 flex items-center space-x-3 cursor-pointer">
-                <div class="w-9 h-9 bg-yellow-200 rounded-lg flex items-center justify-center text-black font-bold text-xs">
-                    <div class="w-6 h-4 bg-black rounded-b-full mt-1"></div>
-                </div>
-                <div>
-                    <div class="text-sm font-bold text-white">Pund1k</div>
-                    <div class="text-[10px] text-zinc-400">MENU</div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Dinamik İçerik Alanı (Örn: Kredi Yükleme Sayfası) -->
-    <main class="max-w-7xl mx-auto w-full p-6 space-y-6 my-4">
-        <div class="text-xs text-zinc-400 flex items-center space-x-2">
-            <span>Anasayfa</span>
-            <span>/</span>
-            <span>Profil</span>
-            <span>/</span>
-            <span class="text-white">Kredi Yükle</span>
-        </div>
-
-        <h1 class="text-2xl font-bold tracking-wide">Kredi Yükle</h1>
-
-        <div class="bg-amber-950/30 border border-amber-600/30 rounded-lg p-4 text-amber-400 text-sm flex items-center space-x-2">
-            <span>⚠️</span>
-            <span>50 kredi ve üzeri yüklemelerde %100 bonus!</span>
-        </div>
-
-        <div class="bg-zinc-900/50 border border-zinc-800/60 rounded-xl p-6 space-y-6">
-            <div class="space-y-2">
-                <label class="text-xs font-semibold text-zinc-400">Miktar</label>
-                <input type="number" placeholder="Miktarı girin." class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-amber-500 transition text-white">
-            </div>
-
-            <div class="space-y-2">
-                <label class="text-xs font-semibold text-zinc-400">Ödeme Yöntemi</label>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="border border-amber-500 bg-amber-500/5 rounded-lg p-4 cursor-pointer">
-                        <div class="text-sm font-medium">Yurt İçi Ödeme (PayTR)</div>
-                    </div>
-                    <div class="border border-zinc-800 bg-zinc-950 rounded-lg p-4 cursor-pointer hover:border-zinc-700 transition">
-                        <div class="text-sm font-medium text-zinc-400">PayTR (Havale & EFT)</div>
-                    </div>
-                    <div class="border border-zinc-800 bg-zinc-950 rounded-lg p-4 cursor-pointer hover:border-zinc-700 transition">
-                        <div class="text-sm font-medium text-zinc-400">Paywant</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex items-center space-x-2 pt-2">
-                <input type="checkbox" id="network_terms" class="rounded bg-zinc-950 border-zinc-800 text-amber-500 focus:ring-0">
-                <label for="network_terms" class="text-xs text-zinc-400 cursor-pointer"><span class="text-white font-medium">Hizmet Politikası</span> kabul ediyorum.</label>
-            </div>
-
-            <button class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold py-3 rounded-lg shadow-lg shadow-amber-600/20 hover:opacity-90 transition">
-                Kredi Yükle
-            </button>
-        </div>
-    </main>
-</div>
+</html>
