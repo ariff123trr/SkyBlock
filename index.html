@@ -117,7 +117,7 @@
             display: block;
         }
 
-        /* Ana Sayfa (MC Arka Plan & Bilboard) */
+        /* Ana Sayfa */
         .hero {
             min-height: 85vh;
             display: flex;
@@ -207,7 +207,7 @@
             color: #f8fafc;
         }
 
-        /* Mağaza & Banka Havale Bölümü */
+        /* Mağaza & Banka Bölümü */
         .section-title {
             font-size: 2.2rem;
             margin-bottom: 35px;
@@ -292,7 +292,6 @@
             background: #0ea5e9;
         }
 
-        /* Banka Havale / EFT Bilgi Kartları */
         .bank-section {
             margin-top: 50px;
             background: #1e293b;
@@ -333,7 +332,7 @@
             font-size: 0.9rem;
         }
 
-        /* Sağ Taraf: Sepet Paneli */
+        /* Sepet Paneli */
         .cart-panel {
             background: #1e293b;
             border: 1px solid #334155;
@@ -406,7 +405,6 @@
             background: #22c55e;
         }
 
-        /* Sıralamalar ve Kurallar Genel Kutu */
         .content-box {
             background: #1e293b;
             border: 1px solid #334155;
@@ -428,7 +426,7 @@
             border-bottom: none;
         }
 
-        /* Profil Sayfası Tasarımı */
+        /* Profil Sayfası */
         .profile-container {
             background: #1e293b;
             border: 1px solid #334155;
@@ -470,7 +468,7 @@
             font-size: 0.95rem;
         }
 
-        /* Modal ve Sekme Sistemi */
+        /* Modal ve Form Yapısı */
         .modal {
             display: none;
             position: fixed;
@@ -577,6 +575,16 @@
             background: #0ea5e9;
         }
 
+        .new-account-link-btn {
+            background: transparent;
+            border: none;
+            color: #38bdf8;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
         .logout-btn {
             background: #ef4444;
             color: #fff;
@@ -613,7 +621,7 @@
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span class="cart-count" id="cartCount">0</span>
             </button>
-            <button class="auth-btn" id="headerAuthBtn" onclick="modalAc()">Giriş / Kayıt</button>
+            <button class="auth-btn" id="headerAuthBtn" onclick="modalAc()">Kayıt Ol</button>
         </div>
     </header>
 
@@ -637,14 +645,12 @@
         </div>
     </section>
 
-    <!-- 2. MAĞAZA VE BANKA HAVALE BÖLÜMÜ -->
+    <!-- 2. MAĞAZA VE BANKA -->
     <section id="magaza" class="page-section">
         <h2 class="section-title"><i class="fa-solid fa-store" style="color: #38bdf8;"></i> Sunucu Mağazası</h2>
         
         <div class="shop-container">
-            <!-- Sol Taraf Ürünler ve Bankalar -->
             <div>
-                <!-- Rütbeler Kategorisi -->
                 <div class="category-title">Rütbeler</div>
                 <div class="shop-grid">
                     <div class="shop-card">
@@ -685,7 +691,6 @@
                     </div>
                 </div>
 
-                <!-- Spawnerlar Kategorisi -->
                 <div class="category-title">Spawner (SP) Paketleri</div>
                 <div class="shop-grid">
                     <div class="shop-card">
@@ -720,10 +725,9 @@
                     </div>
                 </div>
 
-                <!-- Havale / EFT Banka Bilgileri -->
                 <div class="bank-section">
                     <h3 style="color: #fff; margin-bottom: 5px;"><i class="fa-solid fa-building-columns" style="color: #38bdf8;"></i> Havale / EFT ile Ödeme Bilgileri</h3>
-                    <p style="color: #94a3b8; font-size: 0.9rem;">Ödemenizi aşağıda belirtilen anlaşmalı banka hesaplarımıza yapabilirsiniz.</p>
+                    <p style="color: #94a3b8; font-size: 0.9rem;">Ödemenizi anlaşmalı banka hesaplarımıza yapabilirsiniz.</p>
                     
                     <div class="bank-grid">
                         <div class="bank-card">
@@ -748,7 +752,7 @@
                 </div>
             </div>
 
-            <!-- Sağ Taraf: Canlı Sepet Paneli -->
+            <!-- Sağ Taraf: Sepet Paneli -->
             <div class="cart-panel">
                 <h3><i class="fa-solid fa-basket-shopping"></i> Sepetim</h3>
                 <ul class="cart-items-list" id="cartList">
@@ -822,12 +826,12 @@
         </div>
     </section>
 
-    <!-- GİRİŞ / KAYIT MODALI (TC, Ad Soyad, Doğum Tarihi ve Cinsiyet Tercihli) -->
+    <!-- GİRİŞ / KAYIT MODALI -->
     <div id="authModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="modalKapat()">&times;</span>
             
-            <div class="auth-tabs">
+            <div class="auth-tabs" id="modalTabsContainer">
                 <button class="auth-tab-btn active" id="tabGirisBtn" onclick="sekmeDegistir('giris')">Giriş Yap</button>
                 <button class="auth-tab-btn" id="tabKayitBtn" onclick="sekmeDegistir('kayit')">Kayıt Ol</button>
             </div>
@@ -843,9 +847,10 @@
                     <input type="password" id="girisSifre" placeholder="••••••••" required>
                 </div>
                 <button type="submit" class="submit-btn">Giriş Yap</button>
+                <button type="button" class="new-account-link-btn" onclick="farkliHesapAc()">Farklı bir hesapla kayıt ol / Yeni Hesap Oluştur</button>
             </form>
 
-            <!-- Kayıt Ol Formu (Detaylı Kişisel Bilgi Alanları) -->
+            <!-- Kayıt Ol Formu -->
             <form id="kayitForm" class="auth-form" onsubmit="kayitOl(event)">
                 <div class="form-group">
                     <label>Oyun İçi Nick</label>
@@ -884,9 +889,15 @@
     <script>
         let sepet = [];
         let aktifKullanici = localStorage.getItem('oyuncuNick') || null;
+        let islemDurumuKayitli = localStorage.getItem('hesapKayitliMi') === 'true';
 
         window.onload = function() {
             kullaniciArayuzunuGuncelle();
+            // Siteye ilk kez giren kişiye modal otomatik açılır ve Kayıt sekmesi gösterilir
+            if (!islemDurumuKayitli) {
+                sekmeDegistir('kayit');
+                modalAc();
+            }
         };
 
         function sayfaGoster(sayfaId) {
@@ -909,7 +920,6 @@
             setTimeout(() => { bilgi.style.display = "none"; }, 2000);
         }
 
-        // Sepet Fonksiyonları
         function sepeteEkle(urunAdi, fiyat) {
             sepet.push({ ad: urunAdi, fiyat: fiyat });
             sepetiGuncelle();
@@ -966,7 +976,6 @@
             sepetiGuncelle();
         }
 
-        // Modal ve Sekme Yönetimi
         function modalAc() { document.getElementById("authModal").style.display = "flex"; }
         function modalKapat() { document.getElementById("authModal").style.display = "none"; }
 
@@ -989,7 +998,12 @@
             }
         }
 
-        // Kayıt Ol / Giriş Yap / Profil İşlemleri
+        // Farklı hesap eklemek/yeni kayıt olmak istenildiğinde tetiklenir
+        function farkliHesapAc() {
+            document.getElementById("modalTabsContainer").style.display = "flex";
+            sekmeDegistir('kayit');
+        }
+
         function kayitOl(event) {
             event.preventDefault();
             const nick = document.getElementById("kayitNick").value;
@@ -1003,9 +1017,12 @@
             localStorage.setItem('oyuncuTc', tc);
             localStorage.setItem('oyuncuDogum', dogum);
             localStorage.setItem('oyuncuCinsiyet', cinsiyet);
+            localStorage.setItem('hesapKayitliMi', 'true');
 
             aktifKullanici = nick;
-            alert("Başarıyla kayıt oldunuz, hoş geldin " + nick + "!");
+            islemDurumuKayitli = true;
+
+            alert("Başarıyla kayıt oldunuz ve giriş yaptınız, hoş geldin " + nick + "!");
             kullaniciArayuzunuGuncelle();
             modalKapat();
         }
@@ -1014,12 +1031,6 @@
             event.preventDefault();
             const nick = document.getElementById("girisNick").value;
             localStorage.setItem('oyuncuNick', nick);
-            if (!localStorage.getItem('oyuncuAdSoyad')) {
-                localStorage.setItem('oyuncuAdSoyad', 'Kayıtlı Değil');
-                localStorage.setItem('oyuncuTc', '***********');
-                localStorage.setItem('oyuncuDogum', '0000-00-00');
-                localStorage.setItem('oyuncuCinsiyet', 'Belirtmek İstemiyorum');
-            }
             aktifKullanici = nick;
             alert("Hoş geldin tekrar, " + nick + "!");
             kullaniciArayuzunuGuncelle();
@@ -1029,30 +1040,41 @@
         function profilSayfasinaGit() {
             document.getElementById("profilNick").innerText = aktifKullanici;
             document.getElementById("profilHarf").innerText = aktifKullanici.charAt(0).toUpperCase();
-            document.getElementById("profilAdSoyad").innerText = localStorage.getItem('oyuncuAdSoyad') || '-';
-            document.getElementById("profilTc").innerText = localStorage.getItem('oyuncuTc') || '-';
-            document.getElementById("profilDogum").innerText = localStorage.getItem('oyuncuDogum') || '-';
+            document.getElementById("profilAdSoyad").innerText = localStorage.getItem('oyuncuAdSoyad') || 'Kayıtlı Değil';
+            document.getElementById("profilTc").innerText = localStorage.getItem('oyuncuTc') || '***********';
+            document.getElementById("profilDogum").innerText = localStorage.getItem('oyuncuDogum') || '0000-00-00';
             document.getElementById("profilCinsiyet").innerText = localStorage.getItem('oyuncuCinsiyet') || 'Belirtmek İstemiyorum';
             sayfaGoster('profil');
         }
 
         function cikisYap() {
             localStorage.clear();
-            aktifKullanici = null;
-            alert("Hesaptan çıkış yapıldı.");
             location.reload();
         }
 
         function kullaniciArayuzunuGuncelle() {
             const btn = document.getElementById("headerAuthBtn");
             const profilLink = document.getElementById("link-profil");
+            const tabsContainer = document.getElementById("modalTabsContainer");
 
-            if (aktifKullanici) {
+            if (islemDurumuKayitli) {
+                // Kayıt yapıldıktan sonra Kayıt Ol butonu ve sekmesi tamamen kalkar, sadece Giriş kalır
                 btn.innerText = "👤 " + aktifKullanici;
                 btn.style.background = "#4ade80";
                 btn.style.color = "#0f172a";
                 btn.setAttribute("onclick", "profilSayfasinaGit()");
                 profilLink.style.display = "inline";
+
+                // Sekme alanını gizle, doğrudan giriş formunu ve farklı hesap açma linkini aktif tut
+                tabsContainer.style.display = "none";
+                sekmeDegistir('giris');
+            } else {
+                btn.innerText = "Kayıt Ol";
+                btn.style.background = "#38bdf8";
+                btn.style.color = "#0f172a";
+                btn.setAttribute("onclick", "modalAc()");
+                profilLink.style.display = "none";
+                tabsContainer.style.display = "flex";
             }
         }
     </script>
