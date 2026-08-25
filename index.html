@@ -118,7 +118,7 @@
             display: block;
         }
 
-        /* Ana Sayfa */
+        /* Ana Sayfa - Minecraft Arka Planı */
         .hero {
             height: 85vh;
             display: flex;
@@ -126,7 +126,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.95)), 
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.9)), 
                         url('https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1920&auto=format&fit=crop') no-repeat center center/cover;
             padding: 0 20px;
         }
@@ -135,14 +135,14 @@
             font-size: 3.2rem;
             font-weight: 800;
             margin-bottom: 15px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            text-shadow: 0 4px 10px rgba(0,0,0,0.6);
         }
 
         .hero p {
-            color: #94a3b8;
+            color: #cbd5e1;
             font-size: 1.15rem;
             margin-bottom: 30px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.6);
         }
 
         .ip-box {
@@ -189,7 +189,7 @@
             gap: 30px;
         }
 
-        @media(max-width: 900px) {
+        @media(max-width: 950px) {
             .shop-container {
                 grid-template-columns: 1fr;
             }
@@ -251,7 +251,7 @@
             background: #0ea5e9;
         }
 
-        /* Sağ Taraf: Canlı Sepet Paneli */
+        /* Sağ Taraf: Satın Alınan Malzemeler / Sepet Paneli */
         .cart-panel {
             background: #1e293b;
             border: 1px solid #334155;
@@ -268,6 +268,9 @@
             color: #fff;
             border-bottom: 1px solid #334155;
             padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .cart-items-list {
@@ -343,7 +346,7 @@
             border-bottom: none;
         }
 
-        /* Modal (Giriş / Kayıt Formu) */
+        /* Modal (Oyun İçi Nick & Şifre ile Kayıt Olma / Giriş) */
         .modal {
             display: none;
             position: fixed;
@@ -452,7 +455,7 @@
             <a onclick="sayfaGoster('kurallar')" class="nav-link" id="link-kurallar">Kurallar</a>
         </nav>
         <div class="header-right">
-            <button class="cart-icon-btn" onclick="mobilSepetGoster()" title="Sepetim">
+            <button class="cart-icon-btn" onclick="sayfaGoster('magaza')" title="Sepetim">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span class="cart-count" id="cartCount">0</span>
             </button>
@@ -460,7 +463,7 @@
         </div>
     </header>
 
-    <!-- 1. ANA SAYFA -->
+    <!-- 1. ANA SAYFA (MC Arka Plan) -->
     <section id="anasayfa" class="page-section hero active">
         <div class="hero-content">
             <h1>En İyi Emek Skyblock Deneyimi</h1>
@@ -475,52 +478,52 @@
         </div>
     </section>
 
-    <!-- 2. MAĞAZA VE SAĞ SEPET PANELİ -->
+    <!-- 2. MAĞAZA (Rütbeler ve Sağda Canlı Sepet) -->
     <section id="magaza" class="page-section">
         <h2 class="section-title"><i class="fa-solid fa-store" style="color: #38bdf8;"></i> Sunucu Mağazası</h2>
         
         <div class="shop-container">
-            <!-- Sol Taraf: Rütbe Mağazası Ürünleri -->
+            <!-- Sol Taraf: İstediğin 6 Farklı Rütbe -->
             <div class="shop-grid">
                 <div class="shop-card">
                     <h3>VIP</h3>
-                    <p>Standart rütbe avantajları ve temel uçuş hakkı.</p>
+                    <p>Temel uçuş yetkisi ve standart rütbe hediyeleri.</p>
                     <div class="price">30 TL</div>
-                    <button class="buy-btn" onclick="sepeteEkle('VIP', 30)">Sepete Ekle</button>
+                    <button class="buy-btn" onclick="sepeteEkle('VIP Rütbesi', 30)">Sepete Ekle</button>
                 </div>
                 <div class="shop-card">
                     <h3>VIP+</h3>
-                    <p>Gelişmiş komutlar ve ek kit ayrıcalığı.</p>
+                    <p>Gelişmiş komutlar, /feed ve özel kit avantajı.</p>
                     <div class="price">50 TL</div>
-                    <button class="buy-btn" onclick="sepeteEkle('VIP+', 50)">Sepete Ekle</button>
+                    <button class="buy-btn" onclick="sepeteEkle('VIP+ Rütbesi', 50)">Sepete Ekle</button>
                 </div>
                 <div class="shop-card">
                     <h3>MVIP</h3>
-                    <p>Özel prefix, /feed komutu ve bonus ada parası.</p>
+                    <p>Özel prefix, fazladan ada üyesi ve para bonusu.</p>
                     <div class="price">80 TL</div>
-                    <button class="buy-btn" onclick="sepeteEkle('MVIP', 80)">Sepete Ekle</button>
+                    <button class="buy-btn" onclick="sepeteEkle('MVIP Rütbesi', 80)">Sepete Ekle</button>
                 </div>
                 <div class="shop-card">
                     <h3>MVIP+</h3>
-                    <p>Gelişmiş MVIP yetkileri ve özel efektler.</p>
+                    <p>Üst düzey MVIP komutları ve özel efektler.</p>
                     <div class="price">120 TL</div>
-                    <button class="buy-btn" onclick="sepeteEkle('MVIP+', 120)">Sepete Ekle</button>
+                    <button class="buy-btn" onclick="sepeteEkle('MVIP+ Rütbesi', 120)">Sepete Ekle</button>
                 </div>
                 <div class="shop-card">
                     <h3>ZenithVIP</h3>
-                    <p>Üst düzey vip komutları ve özel adalar.</p>
+                    <p>Özel adalar, yüksek spawner limitleri ve vip hammadde.</p>
                     <div class="price">180 TL</div>
-                    <button class="buy-btn" onclick="sepeteEkle('ZenithVIP', 180)">Sepete Ekle</button>
+                    <button class="buy-btn" onclick="sepeteEkle('ZenithVIP Rütbesi', 180)">Sepete Ekle</button>
                 </div>
                 <div class="shop-card">
                     <h3>ZenithPlus</h3>
-                    <p>Sunucunun en prestijli rütbesi ve tam yetkiler.</p>
+                    <p>Sunucunun en üst düzey rütbesi ve sınırsız ayrıcalıklar.</p>
                     <div class="price">250 TL</div>
-                    <button class="buy-btn" onclick="sepeteEkle('ZenithPlus', 250)">Sepete Ekle</button>
+                    <button class="buy-btn" onclick="sepeteEkle('ZenithPlus Rütbesi', 250)">Sepete Ekle</button>
                 </div>
             </div>
 
-            <!-- Sağ Taraf: Satın Alınan Malzemeler (Sepet) -->
+            <!-- Sağ Taraf: Satın Alınan Malzemeler / Sepet -->
             <div class="cart-panel">
                 <h3><i class="fa-solid fa-basket-shopping"></i> Sepetim</h3>
                 <ul class="cart-items-list" id="cartList">
@@ -578,14 +581,15 @@
         <div class="modal-content">
             <span class="close-btn" onclick="modalKapat()">&times;</span>
             <h3 style="color:#fff; margin-bottom: 15px;">Oyuncu Giriş / Kayıt</h3>
+            <p style="color: #94a3b8; font-size: 13px; margin-bottom: 15px;">Sunucudaki oyun içi nickiniz ve şifrenizle giriş yapın.</p>
             
             <form onsubmit="hesapIslem(event)">
                 <div class="form-group">
-                    <label>Oyun İçi Nick (Kullanıcı Adı)</label>
+                    <label>Oyun İçi Nick</label>
                     <input type="text" id="oyuncuNick" placeholder="Örn: KaanYurdakul" required>
                 </div>
                 <div class="form-group">
-                    <label>Oyun İçi Şifreniz</label>
+                    <label>Şifre</label>
                     <input type="password" id="oyuncuSifre" placeholder="••••••••" required>
                 </div>
                 <button type="submit" class="submit-btn">Giriş Yap / Kayıt Ol</button>
@@ -599,7 +603,6 @@
 
     <!-- JavaScript Kodları -->
     <script>
-        // Sepet Verileri
         let sepet = [];
 
         function sayfaGoster(sayfaId) {
@@ -618,20 +621,20 @@
             setTimeout(() => { bilgi.style.display = "none"; }, 2000);
         }
 
-        // Sepete Ürün Ekleme Fonksiyonu
+        // Sepete Ürün Ekleme
         function sepeteEkle(urunAdi, fiyat) {
             sepet.push({ ad: urunAdi, fiyat: fiyat });
             sepetiGuncelle();
             alert(urunAdi + " sağdaki sepetinize eklendi!");
         }
 
-        // Sepetten Ürün Silme
+        // Sepetten Ürün Çıkarma
         function sepettenCikar(index) {
             sepet.splice(index, 1);
             sepetiGuncelle();
         }
 
-        // Sepet Arayüzünü Güncelleme
+        // Sepet Görünümünü Güncelle
         function sepetiGuncelle() {
             const listEl = document.getElementById("cartList");
             const countEl = document.getElementById("cartCount");
@@ -662,16 +665,12 @@
             totalEl.innerText = toplam + " TL";
         }
 
-        function mobilSepetGoster() {
-            sayfaGoster('magaza');
-        }
-
         function satinAlTamamla() {
             if (sepet.length === 0) {
                 alert("Sepetinizde ürün bulunmamaktadır!");
                 return;
             }
-            alert("Ödeme sayfasına yönlendiriliyorsunuz! Lütfen oyunda çevrim içi olduğunuzdan emin olun.");
+            alert("Ödeme sayfasına yönlendiriliyorsunuz! Lütfen oyun içinde online olduğunuzdan emin olun.");
             sepet = [];
             sepetiGuncelle();
         }
@@ -683,12 +682,12 @@
         function hesapIslem(event) {
             event.preventDefault();
             const nick = document.getElementById("oyuncuNick").value;
-            alert("Hoş geldin " + nick + "! Hesabınız başarıyla doğrulandı/kaydedildi.");
+            alert("Başarıyla giriş yapıldı, hoş geldin " + nick + "!");
             modalKapat();
         }
 
         function googleIleGiris() {
-            alert("Google (Gmail) ile hesap senkronizasyonu başlatıldı!");
+            alert("Google hesabı ile senkronizasyon başlatıldı!");
             modalKapat();
         }
     </script>
