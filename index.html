@@ -3,190 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunucu Adı - Emek Skyblock</title>
-    <!-- Google Fonts ve İkonlar -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: #0f172a;
-            color: #f8fafc;
-        }
-
-        /* Header Tasarımı */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background-color: rgba(15, 23, 42, 0.9);
-            border-bottom: 1px solid #1e293b;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo h2 {
-            color: #fff;
-            font-weight: 800;
-        }
-
-        .logo span {
-            color: #38bdf8;
-        }
-
-        nav a {
-            color: #94a3b8;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        nav a:hover, nav a.active {
-            color: #38bdf8;
-        }
-
-        .auth-buttons a {
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            margin-left: 10px;
-            transition: 0.3s;
-        }
-
-        .btn-login {
-            color: #fff;
-            background: transparent;
-            border: 1px solid #334155;
-        }
-
-        .btn-register {
-            background-color: #38bdf8;
-            color: #0f172a;
-        }
-
-        .btn-register:hover {
-            background-color: #0ea5e9;
-        }
-
-        /* Hero Bölümü */
-        .hero {
-            height: 80vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.9)), #0f172a;
-            padding: 0 20px;
-        }
-
-        .hero-content h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
-
-        .hero-content p {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
-
-        /* IP Kopyalama Kutusu */
-        .ip-box {
-            background-color: #1e293b;
-            border: 2px solid #334155;
-            padding: 15px 30px;
-            border-radius: 12px;
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .ip-box:hover {
-            border-color: #38bdf8;
-            transform: translateY(-2px);
-        }
-
-        .ip-box span {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #fff;
-        }
-
-        .ip-box i {
-            color: #38bdf8;
-            font-size: 1.2rem;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Üst Menü (Navbar) -->
-    <header>
-        <div class="logo">
-            <h2>SKYBLOCK<span>TR</span></h2>
-        </div>
-        <nav>
-            <a href="#" class="active">Ana Sayfa</a>
-            <a href="#market">Mağaza</a>
-            <a href="#siralamalar">Sıralama</a>
-            <a href="#kurallar">Kurallar</a>
-        </nav>
-        <div class="auth-buttons">
-            <a href="#" class="btn-login">Giriş Yap</a>
-            <a href="#" class="btn-register">Kayıt Ol</a>
-        </div>
-    </header>
-
-    <!-- Hero (Karşılama) Alanı -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>En İyi Emek Skyblock Deneyimi</h1>
-            <p>Özel minyonlar, çiftçi sistemi, gelişmiş rütbeler ve daha fazlası seni bekliyor!</p>
-            
-            <!-- Sunucu IP Kopyalama Kutusu -->
-            <div class="ip-box" onclick="ipKopyala()">
-                <span id="sunucuIp">oyna.sunucuadi.com</span>
-                <i class="fa-solid fa-copy"></i>
-            </div>
-            <br>
-            <span id="kopyaBilgi" style="display:none; color: #4ade80; font-size: 14px; margin-top: 10px; display: inline-block;">IP Kopyalandı!</span>
-        </div>
-    </section>
-
-    <!-- IP Kopyalama Scripti -->
-    <script>
-        function ipKopyala() {
-            const ipText = document.getElementById("sunucuIp").innerText;
-            navigator.clipboard.writeText(ipText);
-            const bilgi = document.getElementById("kopyaBilgi");
-            bilgi.style.display = "inline-block";
-            setTimeout(() => {
-                bilgi.style.display = "none";
-            }, 2000);
-        }
-    </script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yurdakul Network - Emek Skyblock</title>
     <!-- Google Fonts ve İkonlar -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
@@ -382,7 +198,7 @@
             background: #0ea5e9;
         }
 
-        /* Sıralamalar ve Kurallar Tabloları/Listeleri */
+        /* Sıralamalar ve Kurallar Tabloları */
         .content-box {
             background: #1e293b;
             border: 1px solid #334155;
@@ -498,7 +314,7 @@
         </div>
     </section>
 
-    <!-- 2. MAĞAZA -->
+    <!-- 2. MAĞAZA (VIP, Spawner, Kasalar, Minyonlar) -->
     <section id="magaza" class="page-section">
         <h2 class="section-title">Sunucu Mağazası</h2>
         <div class="shop-grid">
@@ -575,7 +391,7 @@
         </div>
     </section>
 
-    <!-- GİRİŞ / KAYIT MODALI (Gmail ile Kayıt Seçeneği Eklendi) -->
+    <!-- GİRİŞ / KAYIT MODALI (Gmail ile Kayıt Seçeneği) -->
     <div id="authModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="modalKapat()">&times;</span>
@@ -588,7 +404,7 @@
         </div>
     </div>
 
-    <!-- JavaScript Kontrolleri -->
+    <!-- JavaScript Kodları -->
     <script>
         // Sayfa geçiş fonksiyonu
         function sayfaGoster(sayfaId) {
@@ -599,21 +415,23 @@
             document.getElementById('link-' + sayfaId).classList.add('active');
         }
 
-        // IP Kopyalama
+        // IP Kopyalama Fonksiyonu ve Bildirimi
         function ipKopyala() {
             const ipText = document.getElementById("sunucuIp").innerText;
             navigator.clipboard.writeText(ipText);
             const bilgi = document.getElementById("kopyaBilgi");
             bilgi.style.display = "inline-block";
-            setTimeout(() => { bilgi.style.display = "none"; }, 2000);
+            setTimeout(() => { 
+                bilgi.style.display = "none"; 
+            }, 2000);
         }
 
-        // Modal İşlemleri
+        // Modal (Giriş Penceresi) İşlemleri
         function modalAc() { document.getElementById("authModal").style.display = "flex"; }
         function modalKapat() { document.getElementById("authModal").style.display = "none"; }
 
         function googleIleGiris() {
-            alert("Google (Gmail) entegrasyonu tetiklendi! Gerçek sistemde bu buton OAuth ile bağlanacaktır.");
+            alert("Google (Gmail) ile giriş tetiklendi!");
             modalKapat();
         }
 
