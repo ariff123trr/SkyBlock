@@ -180,7 +180,7 @@
 
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
             gap: 15px;
             margin-bottom: 30px;
         }
@@ -204,15 +204,14 @@
             box-shadow: 0 10px 20px rgba(245, 158, 11, 0.15);
         }
         .category-card i {
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: var(--primary);
         }
         .category-card h3 {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 600;
         }
 
-        /* ÇÖZÜM: Varsayılan olarak pointer-events: none yapıldı ve açılınca active sınıfıyla 'auto' yapılıyor */
         .drawer-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -304,15 +303,6 @@
         .drawer-menu-left { display: flex; align-items: center; gap: 15px; }
         .drawer-menu-left i { width: 20px; text-align: center; color: var(--text-muted); }
 
-        .menu-right-val {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--success);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        .status-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; }
         .drawer-menu li.logout a { color: var(--danger); }
         .drawer-menu li.logout i { color: var(--danger); }
 
@@ -357,24 +347,6 @@
             border-radius: 4px;
         }
         .store-item img { width: 60px; height: 60px; object-fit: contain; margin-bottom: 10px; margin-top: 15px; }
-
-        .features-list {
-            list-style: none;
-            margin: 12px 0;
-            font-size: 0.83rem;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(255,255,255,0.06);
-            padding-top: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        .features-list li {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .features-list i { color: var(--primary); font-size: 0.75rem; }
 
         .btn {
             background: var(--primary);
@@ -423,31 +395,6 @@
             border: 2px solid var(--primary);
         }
 
-        .auth-tabs {
-            display: flex;
-            background: #0f172a;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            border: 1px solid #475569;
-        }
-        .auth-tab-btn {
-            flex: 1;
-            padding: 10px;
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .auth-tab-btn.active {
-            background: var(--primary);
-            color: #000;
-        }
-        .auth-form-container { display: none; }
-        .auth-form-container.active { display: block; }
-
         @media(max-width: 768px) {
             .nav-container { flex-direction: column; gap: 15px; }
             .nav-links { flex-wrap: wrap; justify-content: center; }
@@ -489,7 +436,7 @@
                 <div class="bilboard-ticker">
                     <span class="bilboard-badge"><i class="fa-solid fa-bullhorn"></i> Son Kayıtlar</span>
                     <div class="bilboard-content" id="ticker-text">
-                        Pund'1k, VIP (30 Günlük) satın aldı! | Ahmet, Sponsor Kiti aldı! | Mehmet, TVIP+ paketi aktifleştirdi!
+                        Pund'1k, Çiftçi Otosat Yetkisi (Sınırsız) satın aldı! | Ahmet, 30 Günlük Uçuş Süresi aldı! | Mehmet, Edit Kasa Anahtarı satın aldı!
                     </div>
                 </div>
 
@@ -515,33 +462,29 @@
                     <i class="fa-solid fa-fire"></i>
                     <h3>En Çok Satan</h3>
                 </div>
+                <div class="category-card" onclick="filterCategory('farmer', this)">
+                    <i class="fa-solid fa-wheat-awn"></i>
+                    <h3>Çiftçi Otosat</h3>
+                </div>
+                <div class="category-card" onclick="filterCategory('flight', this)">
+                    <i class="fa-solid fa-feather"></i>
+                    <h3>Uçuş Süreleri</h3>
+                </div>
+                <div class="category-card" onclick="filterCategory('keys', this)">
+                    <i class="fa-solid fa-key"></i>
+                    <h3>Kasa Anahtarları</h3>
+                </div>
+                <div class="category-card" onclick="filterCategory('edititems', this)">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <h3>Edit & Admin</h3>
+                </div>
                 <div class="category-card" onclick="filterCategory('vips', this)">
                     <i class="fa-solid fa-crown"></i>
                     <h3>VIP Paketleri</h3>
                 </div>
-                <div class="category-card" onclick="filterCategory('advanced', this)">
-                    <i class="fa-solid fa-star"></i>
-                    <h3>Gelişmiş Paketler</h3>
-                </div>
-                <div class="category-card" onclick="filterCategory('autobreak', this)">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                    <h3>Çiftçi Otosat</h3>
-                </div>
-                <div class="category-card" onclick="filterCategory('edititems', this)">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    <h3>Edit Eşyalar</h3>
-                </div>
-                <div class="category-card" onclick="filterCategory('keys', this)">
-                    <i class="fa-solid fa-key"></i>
-                    <h3>Anahtarlar</h3>
-                </div>
                 <div class="category-card" onclick="filterCategory('spawners', this)">
                     <i class="fa-solid fa-box-archive"></i>
                     <h3>Spawnerlar</h3>
-                </div>
-                <div class="category-card" onclick="filterCategory('fly', this)">
-                    <i class="fa-solid fa-feather"></i>
-                    <h3>Uçma (Fly)</h3>
                 </div>
             </div>
 
@@ -552,30 +495,11 @@
 
         <!-- Credit Load Page -->
         <div id="page-credit" class="page">
-            <div class="text-xs text-zinc-400 flex items-center space-x-2 mb-3" style="font-size: 0.85rem; color: var(--text-muted);">
-                <span>Anasayfa</span> / <span style="color:var(--text-main);">Kredi Yükle</span>
-            </div>
             <h2 style="margin-bottom: 10px;">Kredi Yükle</h2>
-            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 15px; color: var(--primary); font-size: 0.9rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                <i class="fa-solid fa-triangle-exclamation"></i>
-                <span>50 TL ve üzeri yüklemelerde seçili VIP paketlerinde ekstra avantajlar seni bekliyor!</span>
-            </div>
             <div style="background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 25px; max-width: 600px;">
                 <div style="margin-bottom: 20px;">
                     <label style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 8px;">Yüklenecek Miktar (TL)</label>
                     <input type="number" id="creditAmount" placeholder="Miktarı girin." style="width: 100%; background: #0f172a; border: 1px solid #475569; border-radius: 6px; padding: 12px; color: white; font-size: 0.95rem;">
-                </div>
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 8px;">Ödeme Yöntemi</label>
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;" id="paymentMethodsContainer">
-                        <div onclick="selectCustomPayment(this, 'Kredi/Banka Kartı')" class="payment-card selected" style="border: 1px solid var(--primary); background: rgba(245,158,11,0.1); border-radius: 8px; padding: 12px; text-align: center; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: white;">Kredi/Banka Kartı</div>
-                        <div onclick="selectCustomPayment(this, 'Havale & EFT')" class="payment-card" style="border: 1px solid #475569; background: #0f172a; border-radius: 8px; padding: 12px; text-align: center; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: var(--text-muted);">Havale & EFT</div>
-                        <div onclick="selectCustomPayment(this, 'Papara / İninal')" class="payment-card" style="border: 1px solid #475569; background: #0f172a; border-radius: 8px; padding: 12px; text-align: center; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: var(--text-muted);">Papara / İninal</div>
-                    </div>
-                </div>
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-size: 0.85rem;">
-                    <input type="checkbox" id="termsCheck" checked style="width: 16px; height: 16px; accent-color: var(--primary);">
-                    <label for="termsCheck" style="color: var(--text-muted); cursor: pointer;"><strong style="color:white;">Hizmet Politikası ve Satış Sözleşmesi'ni</strong> kabul ediyorum.</label>
                 </div>
                 <button class="btn" style="background: linear-gradient(to right, #f59e0b, #ea580c); color: black;" onclick="handleCreditLoadAction()">Güvenli Kredi Yükle</button>
             </div>
@@ -584,7 +508,6 @@
         <!-- Cart Page -->
         <div id="page-cart" class="page">
             <h2>Alışveriş Sepeti</h2>
-            <p style="color:var(--text-muted); margin:10px 0 20px 0;">Sepetine eklediğin ürünleri buradan kontrol edebilir ve onaylayabilirsin.</p>
             <div style="background:var(--card-bg); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:25px; max-width:700px;">
                 <div id="cart-items-container">
                     <p style="color:var(--text-muted);">Sepetinizde henüz ürün bulunmuyor.</p>
@@ -599,7 +522,6 @@
         <!-- Inventory Page -->
         <div id="page-inventory" class="page">
             <h2>Site Envanterim (Sandık)</h2>
-            <p style="color:var(--text-muted); margin:10px 0 20px 0;">Satın aldığın eşyalar burada birikir. Oyuna girdiğinde entegre edebilirsin.</p>
             <div id="inventory-container" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:15px;">
                 <p style="color:var(--text-muted);">Sandığınızda henüz eşya bulunmuyor.</p>
             </div>
@@ -611,56 +533,27 @@
                 <img src="https://minotar.net/avatar/Pund1k/100.png" id="profile-avatar-img" alt="Avatar">
                 <h2 id="profile-username">Pund'1k</h2>
                 <p style="color:var(--primary); font-weight:600; margin:5px 0;" id="profile-role">Rütbe: Oyuncu</p>
-                <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin:15px 0;">
-                <div style="text-align:left; display:flex; flex-direction:column; gap:10px;">
-                    <div><strong>Kayıt Tarihi:</strong> <span style="color:var(--text-muted);">01.06.2026</span></div>
-                    <div><strong>Mevcut Bakiye:</strong> <span style="color:var(--success);" id="profile-balance">40.00</span> ₺</div>
-                    <div><strong>Site İçi Kişiselleştirme:</strong> 
-                        <input type="text" id="customTitleInput" placeholder="Profil Durum Mesajı Yazın..." style="width:100%; padding:8px; margin-top:5px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px;">
-                        <button class="btn" style="margin-top:8px; padding:6px;" onclick="saveProfileCustomization()">Kaydet</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Banka / Ödeme Doğrulama Modalı -->
+<!-- Ödeme Modalı -->
 <div class="modal" id="paymentModal">
     <div class="modal-content" style="width: 420px;">
         <h3 style="margin-bottom: 10px; color: var(--primary);"><i class="fa-solid fa-shield-halved"></i> Ödeme Onayı</h3>
-        <p id="paymentModalText" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">İşlemi tamamlamak için lütfen banka/ödeme bilgilerinizi doğrulayın.</p>
-        
-        <div id="cardDetailsArea" style="text-align: left; margin-bottom: 20px;">
-            <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Kart Sahibinin Adı</label>
-            <input type="text" value="Pund'1k" style="width:100%; padding:8px; margin-bottom:10px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px; font-size:0.9rem;">
-            
-            <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Kart Numarası</label>
-            <input type="text" placeholder="5258 •••• •••• 1923" style="width:100%; padding:8px; margin-bottom:10px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px; font-size:0.9rem;">
-            
-            <div style="display: flex; gap: 10px;">
-                <div>
-                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">SKT (Ay/Yıl)</label>
-                    <input type="text" placeholder="08/28" style="width:100%; padding:8px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px; font-size:0.9rem;">
-                </div>
-                <div>
-                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">CVV</label>
-                    <input type="text" placeholder="123" style="width:100%; padding:8px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px; font-size:0.9rem;">
-                </div>
-            </div>
-        </div>
-
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">İşlemi tamamlamak için lütfen bilgileri doğrulayın.</p>
         <button class="btn" style="background: var(--success); color: white; margin-bottom: 10px;" onclick="confirmPaymentProcess()">Ödemeyi Onayla ve Yükle</button>
         <button class="btn" style="background: var(--danger); color: white;" onclick="closePaymentModal()">İptal Et</button>
     </div>
 </div>
 
-<!-- Sağ Kayar Menü (Drawer) -->
+<!-- Drawer -->
 <div class="drawer-overlay" id="drawerOverlay" onclick="handleDrawerOutsideClick(event)">
     <div class="drawer" id="drawerPanel">
         <div class="drawer-header">
             <div class="drawer-user-info">
-                <img src="https://minotar.net/avatar/Pund1k/100.png" alt="Avatar" id="drawer-avatar-img">
+                <img src="https://minotar.net/avatar/Pund1k/100.png" alt="Avatar">
                 <div class="drawer-user-text">
                     <h3 id="drawer-name">Pund'1k</h3>
                     <span>Oyuncu</span>
@@ -668,218 +561,149 @@
             </div>
             <button class="drawer-close-btn" onclick="toggleDrawer(false)"><i class="fa-solid fa-xmark"></i></button>
         </div>
-
         <ul class="drawer-menu">
-            <li><a onclick="switchPage('profile'); toggleDrawer(false);"><div class="drawer-menu-left"><i class="fa-solid fa-user"></i><span>Profilim</span></div><i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i></a></li>
-            <li>
-                <a onclick="switchPage('credit'); toggleDrawer(false);">
-                    <div class="drawer-menu-left"><i class="fa-solid fa-wallet"></i><span>Bakiye Yükle</span></div>
-                    <div class="menu-right-val">
-                        <span id="drawer-balance">40.00</span> ₺
-                        <div class="status-dot"></div>
-                    </div>
-                </a>
-            </li>
-            <li><a onclick="switchPage('cart'); toggleDrawer(false);"><div class="drawer-menu-left"><i class="fa-solid fa-cart-shopping"></i><span>Sepet</span></div><i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i></a></li>
-            <li><a onclick="switchPage('inventory'); toggleDrawer(false);"><div class="drawer-menu-left"><i class="fa-solid fa-box-archive"></i><span>Sandık</span></div><i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i></a></li>
-            <li><a onclick="switchPage('store'); toggleDrawer(false);"><div class="drawer-menu-left"><i class="fa-solid fa-cart-shopping"></i><span>Mağaza</span></div><i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i></a></li>
-            <li class="logout"><a onclick="logoutAction()"><div class="drawer-menu-left"><i class="fa-solid fa-right-from-bracket"></i><span>Çıkış Yap / Değiştir</span></div><i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--danger);"></i></a></li>
+            <li><a onclick="switchPage('profile'); toggleDrawer(false);"><div class="drawer-menu-left"><i class="fa-solid fa-user"></i><span>Profilim</span></div></a></li>
+            <li class="logout"><a onclick="logoutAction()"><div class="drawer-menu-left"><i class="fa-solid fa-right-from-bracket"></i><span>Çıkış Yap</span></div></a></li>
         </ul>
     </div>
 </div>
 
-<!-- Giriş / Kayıt Modalı -->
-<div class="modal" id="authModal">
-    <div class="modal-content" style="width: 450px;">
-        <div class="auth-tabs">
-            <button class="auth-tab-btn active" id="tabLoginBtn" onclick="switchAuthTab('login')">Giriş Yap</button>
-            <button class="auth-tab-btn" id="tabRegisterBtn" onclick="switchAuthTab('register')">Kayıt Ol</button>
-        </div>
-
-        <div id="loginFormContainer" class="auth-form-container active">
-            <h3 style="margin-bottom: 10px;">Giriş Yap</h3>
-            <input type="text" id="loginUser" placeholder="Minecraft Kullanıcı Adı" style="width:100%; padding:10px; margin-bottom:10px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px;">
-            <input type="password" id="loginPass" placeholder="Şifre" style="width:100%; padding:10px; margin-bottom:15px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px;">
-            <button class="btn" onclick="handleLogin()">Giriş Yap</button>
-        </div>
-
-        <div id="registerFormContainer" class="auth-form-container">
-            <h3>Yeni Hesap Kayıt</h3>
-            <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">Kayıt olarak profilini kişiselleştirebilirsin.</p>
-            <input type="text" id="regUser" placeholder="Minecraft Kullanıcı Adı" style="width:100%; padding:10px; margin-bottom:10px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px;">
-            <input type="email" id="regEmail" placeholder="E-Posta Adresi" style="width:100%; padding:10px; margin-bottom:10px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px;">
-            <input type="password" id="regPass" placeholder="Şifre Belirle" style="width:100%; padding:10px; margin-bottom:15px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px;">
-            <button class="btn" style="background:var(--success); color:white;" onclick="handleRegister()">Kayıt Ol ve Bağlan</button>
-        </div>
-
-        <button class="btn" style="background:var(--danger); color:white; margin-top:20px;" onclick="closeAuthModal()">Kapat</button>
-    </div>
-</div>
-
 <script>
-    let userBalance = 40.00;
-    let cart = [];
-    let userInventory = [];
-    let currentUser = "Pund'1k";
-    let selectedPaymentMethod = "Kredi/Banka Kartı";
-    let pendingCreditAmount = 0;
-    let isCartCheckout = false;
-
-    const storeData = {
+    const productsData = {
         popular: [
-            { name: "Demir Golem Spawner", price: 100.00, oldPrice: "200.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["En çok satan ürünlerden", "En yüksek değerli demir üretimi"] },
-            { name: "İnek Spawner", price: 50.00, oldPrice: "100.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["En çok satan ürünlerden", "Deri ve et üretimi"] },
-            { name: "Örümcek Spawner", price: 75.00, oldPrice: "150.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["En çok satan ürünlerden", "İp ve göz üretimi"] },
-            { name: "Koyun Spawner", price: 50.00, oldPrice: "100.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["En çok satan ürünlerden", "Yün ve et üretimi"] }
+            { name: "Çiftçi Otosat Yetkisi (Sınırsız)", oldPrice: 1000, price: 500, discount: "50% İndirim!" },
+            { name: "Sınırsız Uçuş Süresi", oldPrice: 1300, price: 650, discount: "50% İndirim!" },
+            { name: "Çiftçi Otosat Yetkisi (30 Günlük)", oldPrice: 600, price: 300, discount: "50% İndirim!" },
+            { name: "30 Günlük Uçuş Süresi", oldPrice: 800, price: 400, discount: "50% İndirim!" }
         ],
-        vips: [
-            { 
-                name: "VIP (30 Günlük)", price: 125.00, oldPrice: "250.00 ₺", img: "https://minecraft.wiki/images/Gold_Ingot_JE3_BE2.png",
-                features: [
-                    "Kit: V3, P3 Özel Görünümlü Netherite Eşya (Kırılmazlık 2)",
-                    "Tek Seferlik Hediye: 15.000 Oyun Parası, İskelet Spawner (1x), Şans Kasası (2x), Noel Kasası (1x), Ender Kasası (1x)",
-                    "Özellikler: /eritme, /feed, /hat, /craft, /vipyenilenme",
-                    "Günlük Ödül: Başlangıç Kasası, Şans Kasası, Uçuş İzni (15 Dk), 1000 Para",
-                    "Limitler: /ah: 7 | /sandık: 7 | Sethome: 9 | Ada Üye: 12 | Minyon: 4"
-                ]
-            },
-            { 
-                name: "MVIP (30 Günlük)", price: 200.00, oldPrice: "400.00 ₺", img: "https://minecraft.wiki/images/Diamond_JE3_BE3.png",
-                features: [
-                    "Kit: V4, P3 Özel Görünümlü Netherite Eşya (Kırılmazlık 3)",
-                    "Tek Seferlik Hediye: 25.000 Oyun Parası, İskelet (1x), İnek Spawner (1x), Şans Kasası (3x), Noel Kasası (2x), Ender Kasası (2x)",
-                    "Özellikler: /eritme, /feed, /hat, /craft, /vipyenilenme, /vipgörüş, /viphız",
-                    "Günlük Ödül: Başlangıç Kasası, Noel Kasası, Şans Kasası, Uçuş İzni (30 Dk), 2500 Para, Şans Bloğu",
-                    "Limitler: /ah: 8 | /sandık: 8 | Sethome: 10 | Ada Üye: 13 | Minyon: 5"
-                ]
-            },
-            { 
-                name: "MVIP+ (30 Günlük)", price: 350.00, oldPrice: "700.00 ₺", img: "https://minecraft.wiki/images/Netherite_Ingot_JE1_BE1.png",
-                features: [
-                    "Kit: V4, P4 Özel Görünümlü Netherite Eşya (Kırılmazlık 3)",
-                    "Tek Seferlik Hediye: 50.000 Oyun Parası, Golem (1x), İskelet (1x), Örümcek (1x), Şans Kasası (3x), Noel (3x), Ender (2x), Spawner Kasası (1x)",
-                    "Özellikler: /eritme, /feed, /hat, /craft, /vipyenilenme, /vipgörüş, /viphız, /vipsu, /vipgüç",
-                    "Günlük Ödül: Başlangıç Kasası, Noel, Şans Kasası, Uçuş İzni (30 Dk), 2500 Para, Şans Bloğu",
-                    "Limitler: /ah: 9 | /sandık: 9 | Sethome: 11 | Ada Üye: 14 | Minyon: 5"
-                ]
-            },
-            { 
-                name: "TVIP (30 Günlük)", price: 500.00, oldPrice: "1,000.00 ₺", img: "https://minecraft.wiki/images/Emerald_JE3_BE3.png",
-                features: [
-                    "Kit: V5, P4 Özel Görünümlü Netherite Eşya (Kırılmazlık 4)",
-                    "Tek Seferlik Hediye: 75.000 Oyun Parası, Golem (2x), Örümcek (1x), Zombi Piglin (1x), Şans Kasası (4x), Noel (4x), Ender (3x), Efsanevi (1x), Spawner Kasası (1x)",
-                    "Özellikler: /eritme, /feed, /hat, /craft, /vipyenilenme, /vipgörüş, /viphız, /vipsu, /vipgüç, /repair, /fly, /heal",
-                    "Günlük Ödül: Şans Kasası (2x), Noel Kasası, 5000 Oyun Parası",
-                    "Limitler: /ah: 10 | /sandık: 10 | Sethome: 12 | Ada Üye: 15 | Minyon: 6"
-                ]
-            },
-            { 
-                name: "TVIP+ (30 Günlük)", price: 650.00, oldPrice: "1,300.00 ₺", img: "https://minecraft.wiki/images/Nether_Star.png",
-                features: [
-                    "Kit: V5, P5 Özel Görünümlü Netherite Eşya (Kırılmazlık 4)",
-                    "Tek Seferlik Hediye: 100.000 Oyun Parası, Golem (3x), Örümcek (2x), Zombi Piglin (1x), Noel (5x), Ender (5x), Edit (1x), Warden (1x), Efsanevi (2x)",
-                    "Özellikler: Tüm TVIP Komutları + Çiftçi Otosat Sistemi",
-                    "Günlük Ödül: Şans Kasası (2x), Noel Kasası, 5000 Oyun Parası",
-                    "Limitler: /ah: 11 | /sandık: 12 | Sethome: 14 | Ada Üye: 16 | Minyon: 7"
-                ]
-            },
-            { 
-                name: "Sponsor (30 Günlük)", price: 1000.00, oldPrice: "2,000.00 ₺", img: "https://minecraft.wiki/images/Beacon_JE2.png",
-                features: [
-                    "Kit: V6, P5 Özel Görünümlü Netherite Eşya (Kırılmazlık 4) + İpeksi Kiti",
-                    "Tek Seferlik Hediye: 200.000 Oyun Parası, Golem (5x), Örümcek (2x), Zombi Piglin (2x), Guardian (1x), Noel (8x), Ender (6x), Edit (2x), Warden (2x), Efsanevi (4x)",
-                    "Özellikler: Tüm Özel Ayrıcalıklar, Komutlar ve Çiftçi Otosat",
-                    "Günlük Ödül: Şans Kasası (3x), Noel Kasası (2x), 7.500 Oyun Parası",
-                    "Limitler: /ah: 12 | /sandık: 14 | Sethome: 16 | Ada Üye: 16 | Minyon: 8"
-                ]
-            }
+        farmer: [
+            { name: "Çiftçi Otosat Yetkisi (15 Günlük)", oldPrice: 330, price: 165, discount: "50% İndirim!" },
+            { name: "Çiftçi Otosat Yetkisi (30 Günlük)", oldPrice: 600, price: 300, discount: "50% İndirim!" },
+            { name: "Çiftçi Otosat Yetkisi (Sınırsız)", oldPrice: 1000, price: 500, discount: "50% İndirim!" }
         ],
-        advanced: [
-            { name: "Sponsor Üyelik + 5 Golem Spawner", price: 1300.00, oldPrice: "2,600.00 ₺", stock: "2 stokta", img: "https://minecraft.wiki/images/Beacon_JE2.png", features: ["Sponsor Üyelik Avantajları", "5 Adet Golem Spawner Hediye"] },
-            { name: "Golem Spawner (10 Adet)", price: 850.00, oldPrice: "1,700.00 ₺", stock: "2 stokta", img: "https://minecraft.wiki/images/Spawner.png", features: ["10 Adet Toplu Golem Spawner", "Yüksek verimli ada üretimi"] },
-            { name: "Çiftçi Otosat + Uçuş Süresi [Sınırsız]", price: 850.00, oldPrice: "1,700.00 ₺", stock: "3 stokta", img: "https://minecraft.wiki/images/Elytra_JE2_BE2.png", features: ["Otomatik Çiftçi Satış Sistemi", "Sınırsız /fly Uçuş Yetkisi"] }
-        ],
-        autobreak: [
-            { name: "Çiftçi Otosat Yetkisi (15 Günlük)", price: 165.00, oldPrice: "330.00 ₺", img: "https://minecraft.wiki/images/Hopper.png", features: ["15 Günlük Çiftçi Otosat Yetkisi", "Adanızdaki mahsul ve üretimleri otomatik dönüştürün"] },
-            { name: "Çiftçi Otosat Yetkisi (30 Günlük)", price: 300.00, oldPrice: "600.00 ₺", img: "https://minecraft.wiki/images/Hopper.png", features: ["30 Günlük Çiftçi Otosat Yetkisi", "Kesintisiz otomatik satış avantajı"] },
-            { name: "Çiftçi Otosat Yetkisi (Sınırsız)", price: 500.00, oldPrice: "1,000.00 ₺", img: "https://minecraft.wiki/images/Hopper.png", features: ["Sınırsız Süre Çiftçi Otosat Yetkisi", "Ömür boyu kesintisiz ada kazancı"] }
-        ],
-        edititems: [
-            { name: "Edit Kılıç (Keskinlik 8)", price: 400.00, oldPrice: "800.00 ₺", stock: "", img: "https://minecraft.wiki/images/Netherite_Sword_JE2_BE2.png", features: ["Keskinlik 8 Efsunlu Özel Kılıç", "Yüksek hasar gücü ve dayanıklılık"] },
-            { name: "Edit Kazma (Verimlilik 8)", price: 450.00, oldPrice: "900.00 ₺", stock: "", img: "https://minecraft.wiki/images/Netherite_Pickaxe_JE3_BE3.png", features: ["Verimlilik 8 Efsunlu Kazma", "Işık hızında maden kazma deneyimi"] },
-            { name: "Edit Balta (Verimlilik 8)", price: 350.00, oldPrice: "700.00 ₺", stock: "", img: "https://minecraft.wiki/images/Netherite_Axe_JE2_BE2.png", features: ["Verimlilik 8 Efsunlu Balta", "Hızlı odun kesimi ve avantaj"] },
-            { name: "Edit Kürek (Verimlilik 8)", price: 350.00, oldPrice: "700.00 ₺", stock: "", img: "https://minecraft.wiki/images/Netherite_Shovel_JE1_BE1.png", features: ["Verimlilik 8 Efsunlu Kürek", "Toprak ve kum kazımında üstün performans"] },
-            { name: "Edit Set (Koruma 8)", price: 750.00, oldPrice: "1,500.00 ₺", stock: "", img: "https://minecraft.wiki/images/Netherite_Chestplate_JE2_BE2.png", features: ["Koruma 8 Efsunlu Özel Set", "Savaşlarda maksimum koruma ve direnç"] },
-            { name: "Admin Kılıcı (Keskinlik 12)", price: 1000.00, oldPrice: "2,000.00 ₺", stock: "2 stokta", img: "https://minecraft.wiki/images/Netherite_Sword_JE2_BE2.png", features: ["Keskinlik 12 Sınırsız Güç", "Rakipsiz Admin Ekipmanı"] },
-            { name: "Admin Kazması (Verimlilik 12)", price: 1250.00, oldPrice: "2,500.00 ₺", stock: "2 stokta", img: "https://minecraft.wiki/images/Netherite_Pickaxe_JE3_BE3.png", features: ["Verimlilik 12 Admin Sürümü", "Anında blok kırma kapasitesi"] },
-            { name: "Admin Baltası (Verimlilik 12)", price: 750.00, oldPrice: "1,500.00 ₺", stock: "5 stokta", img: "https://minecraft.wiki/images/Netherite_Axe_JE2_BE2.png", features: ["Verimlilik 12 Özel Balta", "Eşsiz admin gücü"] },
-            { name: "Admin Küreği (Verimlilik 12)", price: 750.00, oldPrice: "1,500.00 ₺", stock: "5 stokta", img: "https://minecraft.wiki/images/Netherite_Shovel_JE1_BE1.png", features: ["Verimlilik 12 Admin Küreği", "Yüksek hızlı zemin temizliği"] },
-            { name: "Admin Seti (Koruma 12)", price: 1500.00, oldPrice: "3,000.00 ₺", stock: "2 stokta", img: "https://minecraft.wiki/images/Netherite_Chestplate_JE2_BE2.png", features: ["Koruma 12 Full Set", "Ölümsüzlük hissi veren admin zırhı"] }
+        flight: [
+            { name: "15 Günlük Uçuş Süresi", oldPrice: 500, price: 250, discount: "50% İndirim!" },
+            { name: "30 Günlük Uçuş Süresi", oldPrice: 800, price: 400, discount: "50% İndirim!" },
+            { name: "Sınırsız Uçuş Süresi", oldPrice: 1300, price: 650, discount: "50% İndirim!" }
         ],
         keys: [
-            { name: "Edit Kasa Anahtarı", price: 150.00, oldPrice: "300.00 ₺", img: "https://minecraft.wiki/images/Tripwire_Hook_JE2_BE2.png", features: ["1 Adet Edit Kasa Anahtarı", "En değerli edit eşyaları çıkarma şansı"] },
-            { name: "Spawner Kasa Anahtarı", price: 65.00, oldPrice: "130.00 ₺", img: "https://minecraft.wiki/images/Tripwire_Hook_JE2_BE2.png", features: ["1 Adet Spawner Kasa Anahtarı", "Çeşitli yaratık spawnerları kazanma şansı"] },
-            { name: "Ender Kasa Anahtarı", price: 25.00, oldPrice: "50.00 ₺", img: "https://minecraft.wiki/images/Tripwire_Hook_JE2_BE2.png", features: ["1 Adet Ender Kasa Anahtarı", "Başlangıç ve orta seviye özel ödüller"] },
-            { name: "Efsanevi Kasa Anahtarı", price: 80.00, oldPrice: "160.00 ₺", img: "https://minecraft.wiki/images/Tripwire_Hook_JE2_BE2.png", features: ["1 Adet Efsanevi Kasa Anahtarı", "Yüksek değerli nadir eşyalar"] },
-            { name: "Kazan Kaybet Kasa Anahtarı", price: 60.00, oldPrice: "120.00 ₺", img: "https://minecraft.wiki/images/Tripwire_Hook_JE2_BE2.png", features: ["1 Adet Kazan Kaybet Anahtarı", "Riskli ve büyük ödüllü şans kasası"] },
-            { name: "Shulker Kasa Anahtarı", price: 15.00, oldPrice: "30.00 ₺", img: "https://minecraft.wiki/images/Tripwire_Hook_JE2_BE2.png", features: ["1 Adet Shulker Kasa Anahtarı", "Depolama ve özel blok ödülleri"] }
+            { name: "Edit Kasa Anahtarı", oldPrice: 300, price: 150, discount: "50% İndirim!" },
+            { name: "Spawner Kasa Anahtarı", oldPrice: 130, price: 65, discount: "50% İndirim!" },
+            { name: "Ender Kasa Anahtarı", oldPrice: 50, price: 25, discount: "50% İndirim!" },
+            { name: "Efsanevi Kasa Anahtarı", oldPrice: 160, price: 80, discount: "50% İndirim!" },
+            { name: "Kazan Kaybet Kasa Anahtarı", oldPrice: 120, price: 60, discount: "50% İndirim!" },
+            { name: "Shulker Kasa Anahtarı", oldPrice: 30, price: 15, discount: "50% İndirim!" }
         ],
-        spawners: [
-            { name: "Domuz Spawner", price: 50.00, oldPrice: "100.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["Adanıza yerleştirebilirsiniz", "Domuz çiftliği için ideal"] },
-            { name: "İnek Spawner", price: 50.00, oldPrice: "100.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["Adanıza yerleştirebilirsiniz", "Deri ve et üretimi"] },
-            { name: "Koyun Spawner", price: 50.00, oldPrice: "100.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["Adanıza yerleştirebilirsiniz", "Yün ve et üretimi"] },
-            { name: "Tavuk Spawner", price: 50.00, oldPrice: "100.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["Adanıza yerleştirebilirsiniz", "Tüy, yumurta ve et üretimi"] },
-            { name: "Örümcek Spawner", price: 75.00, oldPrice: "150.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["Adanıza yerleştirebilirsiniz", "İp ve göz üretimi"] },
-            { name: "İskelet Spawner", price: 75.00, oldPrice: "150.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["Adanıza yerleştirebilirsiniz", "Otomatik XP ve Kemik kasası"] },
-            { name: "Zombi Spawner", price: 75.00, oldPrice: "150.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["Adanıza yerleştirebilirsiniz", "Çürük et ve çesitli düşen eşyalar"] },
-            { name: "Zombi Piglin Spawner", price: 100.00, oldPrice: "200.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["Adanıza yerleştirebilirsiniz", "Altın nugget ve değerli ganimetler"] },
-            { name: "Cadı Spawner", price: 100.00, oldPrice: "200.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["Adanıza yerleştirebilirsiniz", "İksir malzemeleri ve nadir eşyalar"] },
-            { name: "Guardian Spawner", price: 100.00, oldPrice: "200.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["Adanıza yerleştirebilirsiniz", "Prizmarin ve deniz ganimetleri"] },
-            { name: "Demir Golem Spawner", price: 100.00, oldPrice: "200.00 ₺", img: "https://minecraft.wiki/images/Spawner.png", features: ["Adanıza yerleştirebilirsiniz", "En yüksek değerli demir üretimi"] }
+        edititems: [
+            { name: "Admin Kazması (Verimlilik 12)", oldPrice: 900, price: 450, discount: "50% İndirim!" },
+            { name: "Edit Kazma (Verimlilik 8)", oldPrice: 700, price: 350, discount: "50% İndirim!" },
+            { name: "Edit Balta (Verimlilik 8)", oldPrice: 1500, price: 750, discount: "50% İndirim!" },
+            { name: "Edit Set (Koruma 8)", oldPrice: 800, price: 400, discount: "50% İndirim!" }
         ],
-        fly: [
-            { name: "15 Günlük Uçuş Süresi", price: 250.00, oldPrice: "500.00 ₺", img: "https://minecraft.wiki/images/Elytra_JE2_BE2.png", features: ["15 Gün Boyunca /fly Yetkisi", "Tüm dünyalarda aktif kullanım"] },
-            { name: "30 Günlük Uçuş Süresi", price: 400.00, oldPrice: "800.00 ₺", img: "https://minecraft.wiki/images/Elytra_JE2_BE2.png", features: ["30 Gün Boyunca /fly Yetkisi", "Avantajlı aylık uçuş paketi"] },
-            { name: "Sınırsız Uçuş Süresi", price: 650.00, oldPrice: "1,300.00 ₺", img: "https://minecraft.wiki/images/Elytra_JE2_BE2.png", features: ["Ömür Boyu Sınırsız /fly Yetkisi", "Süre sınırı olmaksızın serbest uçuş"] }
-        ]
+        vips: [],
+        spawners: []
     };
 
     function switchPage(pageId) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
         
-        document.getElementById('page-' + pageId).classList.add('active');
-        const navEl = document.getElementById('nav-' + pageId);
-        if(navEl) navEl.classList.add('active');
-
-        if(pageId === 'store') filterCategory('popular', document.querySelector('.category-card'));
-        if(pageId === 'cart') renderCart();
-        if(pageId === 'inventory') renderInventory();
+        const targetPage = document.getElementById('page-' + pageId);
+        if(targetPage) targetPage.classList.add('active');
+        
+        const targetNav = document.getElementById('nav-' + pageId);
+        if(targetNav) targetNav.classList.add('active');
     }
 
-    function filterCategory(categoryKey, element) {
-        document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
-        if(element) element.classList.add('active');
-
-        const products = storeData[categoryKey] || [];
+    function toggleCategory(cat) {
         const container = document.getElementById('store-products');
-        const titleEl = document.getElementById('category-title');
-        
-        if(element && element.querySelector('h3')) {
-            titleEl.innerText = element.querySelector('h3').innerText;
-        }
-
         container.innerHTML = '';
-        products.forEach((prod, idx) => {
-            let featuresHtml = prod.features.map(f => `<li><i class="fa-solid fa-check"></i> ${f}</li>`).join('');
-            let stockHtml = prod.stock ? `<span class="stock-badge">${prod.stock}</span>` : '';
+        const list = productsData[cat] || productsData['popular'];
+        
+        list.forEach(item => {
+            let stockHtml = item.stock ? `<span class="stock-badge">${item.stock}</span>` : '';
             container.innerHTML += `
                 <div class="store-item">
                     ${stockHtml}
-                    <span class="discount-badge">50% İndirim!<br><span style="text-decoration:line-through; font-size:0.7rem; opacity:0.8;">${prod.oldPrice}</span></span>
-                    <img src="${prod.img}" alt="${prod.name}">
-                    <h4 style="font-size:1rem; margin-bottom:5px;">${prod.name}</h4>
-                    <ul class="features-list">${featuresHtml}</ul>
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
-                        <span style="font-weight:bold; color:var(--success); font-size:1.1rem;">${prod.price.toFixed(2)} ₺</span>
-                        <button class="btn" style="widt... (11 KB kaldı)
+                    <span class="discount-badge">${item.discount}</span>
+                    <img src="https://raw.githubusercontent.com/swampert/minecraft-item-icons/master/images/wheat.png" alt="Item" onerror="this.src='https://via.placeholder.com/60'">
+                    <h4 style="font-size: 1rem; margin-bottom: 5px;">${item.name}</h4>
+                    <div style="font-size: 0.85rem; color: var(--text-muted); text-decoration: line-through;">${item.oldPrice}.00 ₺</div>
+                    <div style="font-size: 1.1rem; font-weight: bold; color: var(--success); margin-bottom: 10px;">${item.price}.00 ₺</div>
+                    <button class="btn" onclick="addToCart('${item.name}', ${item.price})">Satın Al</button>
+                </div>
+            `;
+        });
+    }
+
+    function filterCategory(cat, element) {
+        document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
+        element.classList.add('active');
+        document.getElementById('category-title').innerText = element.querySelector('h3').innerText;
+        toggleCategory(cat);
+    }
+
+    function toggleDrawer(open) {
+        const overlay = document.getElementById('drawerOverlay');
+        if(open) { overlay.classList.add('open'); } else { overlay.classList.remove('open'); }
+    }
+
+    function handleDrawerOutsideClick(event) {
+        if(event.target.id === 'drawerOverlay') { toggleDrawer(false); }
+    }
+
+    function copyIP() {
+        navigator.clipboard.writeText("oyna.yurdakulnetwork.com");
+        alert("Sunucu IP adresi kopyalandı!");
+    }
+
+    let cart = [];
+    function addToCart(name, price) {
+        cart.push({name, price});
+        document.getElementById('cart-count').innerText = cart.length;
+        updateCartUI();
+        alert(name + " sepetinize eklendi!");
+    }
+
+    function updateCartUI() {
+        const container = document.getElementById('cart-items-container');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        if(cart.length === 0) {
+            container.innerHTML = '<p style="color:var(--text-muted);">Sepetinizde henüz ürün bulunmuyor.</p>';
+            checkoutBtn.style.display = 'none';
+            document.getElementById('cart-total-price').innerText = "0.00";
+            return;
+        }
+        container.innerHTML = '';
+        let total = 0;
+        cart.forEach((item) => {
+            total += item.price;
+            container.innerHTML += `
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                    <span>${item.name}</span>
+                    <span style="color:var(--success); font-weight:bold;">${item.price}.00 ₺</span>
+                </div>
+            `;
+        });
+        document.getElementById('cart-total-price').innerText = total.toFixed(2);
+        checkoutBtn.style.display = 'block';
+    }
+
+    function proceedCheckout() {
+        alert("Sepet onaylandı, envanterinize aktarılıyor!");
+        cart = [];
+        document.getElementById('cart-count').innerText = 0;
+        updateCartUI();
+    }
+
+    function handleCreditLoadAction() { document.getElementById('paymentModal').style.display = 'flex'; }
+    function closePaymentModal() { document.getElementById('paymentModal').style.display = 'none'; }
+    function confirmPaymentProcess() { alert("Ödeme başarıyla alındı ve bakiye eklendi!"); closePaymentModal(); }
+    function logoutAction() { alert("Çıkış yapıldı."); toggleDrawer(false); }
+
+    window.onload = function() {
+        toggleCategory('popular');
+    };
+</script>
+</body>
+</html>
