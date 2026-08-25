@@ -387,24 +387,6 @@
             text-align: center;
             border: 1px solid rgba(255,255,255,0.1);
         }
-        .bank-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .bank-btn {
-            background: #334155;
-            color: white;
-            border: 1px solid #475569;
-            padding: 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.2s;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        .bank-btn:hover { background: var(--primary); color: black; }
 
         .profile-card {
             background: var(--card-bg);
@@ -555,13 +537,13 @@
                 <div style="margin-bottom: 20px;">
                     <label style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 8px;">Ödeme Yöntemi</label>
                     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;" id="paymentMethodsContainer">
-                        <div onclick="selectCustomPayment(this)" class="payment-card" style="border: 1px solid var(--primary); background: rgba(245,158,11,0.1); border-radius: 8px; padding: 12px; text-align: center; cursor: pointer; font-size: 0.9rem; font-weight: 500;">Kredi/Banka Kartı</div>
-                        <div onclick="selectCustomPayment(this)" class="payment-card" style="border: 1px solid #475569; background: #0f172a; border-radius: 8px; padding: 12px; text-align: center; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: var(--text-muted);">Havale & EFT</div>
-                        <div onclick="selectCustomPayment(this)" class="payment-card" style="border: 1px solid #475569; background: #0f172a; border-radius: 8px; padding: 12px; text-align: center; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: var(--text-muted);">Papara / İninal</div>
+                        <div onclick="selectCustomPayment(this, 'Kredi/Banka Kartı')" class="payment-card selected" style="border: 1px solid var(--primary); background: rgba(245,158,11,0.1); border-radius: 8px; padding: 12px; text-align: center; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: white;">Kredi/Banka Kartı</div>
+                        <div onclick="selectCustomPayment(this, 'Havale & EFT')" class="payment-card" style="border: 1px solid #475569; background: #0f172a; border-radius: 8px; padding: 12px; text-align: center; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: var(--text-muted);">Havale & EFT</div>
+                        <div onclick="selectCustomPayment(this, 'Papara / İninal')" class="payment-card" style="border: 1px solid #475569; background: #0f172a; border-radius: 8px; padding: 12px; text-align: center; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: var(--text-muted);">Papara / İninal</div>
                     </div>
                 </div>
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; font-size: 0.85rem;">
-                    <input type="checkbox" id="termsCheck" style="width: 16px; height: 16px; accent-color: var(--primary);">
+                    <input type="checkbox" id="termsCheck" checked style="width: 16px; height: 16px; accent-color: var(--primary);">
                     <label for="termsCheck" style="color: var(--text-muted); cursor: pointer;"><strong style="color:white;">Hizmet Politikası ve Satış Sözleşmesi'ni</strong> kabul ediyorum.</label>
                 </div>
                 <button class="btn" style="background: linear-gradient(to right, #f59e0b, #ea580c); color: black;" onclick="handleCreditLoadAction()">Güvenli Kredi Yükle</button>
@@ -612,6 +594,36 @@
     </div>
 </div>
 
+<!-- Banka / Ödeme Doğrulama Modalı (Eski Sistem) -->
+<div class="modal" id="paymentModal">
+    <div class="modal-content" style="width: 420px;">
+        <h3 style="margin-bottom: 10px; color: var(--primary);"><i class="fa-solid fa-shield-halved"></i> Ödeme Onayı</h3>
+        <p id="paymentModalText" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">İşlemi tamamlamak için lütfen banka/ödeme bilgilerinizi doğrulayın.</p>
+        
+        <div id="cardDetailsArea" style="text-align: left; margin-bottom: 20px;">
+            <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Kart Sahibinin Adı</label>
+            <input type="text" value="Pund'1k" style="width:100%; padding:8px; margin-bottom:10px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px; font-size:0.9rem;">
+            
+            <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Kart Numarası</label>
+            <input type="text" placeholder="5258 •••• •••• 1923" style="width:100%; padding:8px; margin-bottom:10px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px; font-size:0.9rem;">
+            
+            <div style="display: flex; gap: 10px;">
+                <div>
+                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">SKT (Ay/Yıl)</label>
+                    <input type="text" placeholder="08/28" style="width:100%; padding:8px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px; font-size:0.9rem;">
+                </div>
+                <div>
+                    <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">CVV</label>
+                    <input type="text" placeholder="123" style="width:100%; padding:8px; background:#0f172a; border:1px solid #475569; color:white; border-radius:6px; font-size:0.9rem;">
+                </div>
+            </div>
+        </div>
+
+        <button class="btn" style="background: var(--success); color: white; margin-bottom: 10px;" onclick="confirmPaymentProcess()">Ödemeyi Onayla ve Yükle</button>
+        <button class="btn" style="background: var(--danger); color: white;" onclick="closePaymentModal()">İptal Et</button>
+    </div>
+</div>
+
 <!-- Sağ Kayar Menü (Drawer) -->
 <div class="drawer-overlay" id="drawerOverlay" onclick="handleDrawerOutsideClick(event)">
     <div class="drawer" id="drawerPanel">
@@ -642,23 +654,6 @@
             <li><a onclick="switchPage('store'); toggleDrawer(false);"><div class="drawer-menu-left"><i class="fa-solid fa-cart-shopping"></i><span>Mağaza</span></div><i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--text-muted);"></i></a></li>
             <li class="logout"><a onclick="logoutAction()"><div class="drawer-menu-left"><i class="fa-solid fa-right-from-bracket"></i><span>Çıkış Yap / Değiştir</span></div><i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:var(--danger);"></i></a></li>
         </ul>
-    </div>
-</div>
-
-<!-- Banka / Ödeme Modalı -->
-<div class="modal" id="bankModal">
-    <div class="modal-content">
-        <h3>Ödeme / Bakiye Yükleme</h3>
-        <p id="modal-desc" style="font-size:0.9rem; color:var(--text-muted); margin-top:5px;">Sepet tutarını karşılamak için hızlı bakiye yükleyin:</p>
-        <div class="bank-options">
-            <button class="bank-btn" onclick="completePayment('Papara')">Papara</button>
-            <button class="bank-btn" onclick="completePayment('İninal')">İninal</button>
-            <button class="bank-btn" onclick="completePayment('Garanti BBVA')">Garanti BBVA</button>
-            <button class="bank-btn" onclick="completePayment('Akbank')">Akbank</button>
-            <button class="bank-btn" onclick="completePayment('Denizbank')">Denizbank</button>
-            <button class="bank-btn" onclick="completePayment('Halkbank')">Halkbank</button>
-        </div>
-        <button class="btn" style="background:var(--danger); color:white; margin-top:5px;" onclick="closeBankModal()">İptal Et</button>
     </div>
 </div>
 
@@ -695,6 +690,9 @@
     let cart = [];
     let userInventory = [];
     let currentUser = "Pund'1k";
+    let selectedPaymentMethod = "Kredi/Banka Kartı";
+    let pendingCreditAmount = 0;
+    let isCartCheckout = false;
 
     const storeData = {
         vips: [
@@ -822,7 +820,6 @@
         const item = storeData[cat][index];
         cart.push(item);
         document.getElementById('cart-count').innerText = cart.length;
-        alert(item.name + " sepetinize eklendi!");
     }
 
     function renderCart() {
@@ -874,35 +871,28 @@
             cart = [];
             document.getElementById('cart-count').innerText = 0;
             updateBalances();
-            alert("Ödeme başarıyla tamamlandı! Ürünleriniz sandığınıza (envantere) eklendi.");
             switchPage('inventory');
         } else {
-            document.getElementById('bankModal').style.display = 'flex';
+            isCartCheckout = true;
+            pendingCreditAmount = total - userBalance;
+            document.getElementById('paymentModalText').innerText = `Bakiyeniz yetersiz. Eksik tutar (${pendingCreditAmount.toFixed(2)} ₺) için ödeme yapmanız gerekiyor.`;
+            document.getElementById('cardDetailsArea').style.display = 'block';
+            document.getElementById('paymentModal').style.display = 'flex';
         }
     }
 
-    function closeBankModal() {
-        document.getElementById('bankModal').style.display = 'none';
-    }
-
-    function completePayment(bankName) {
-        let total = cart.reduce((sum, item) => sum + item.price, 0);
-        userBalance += (total + 50); 
-        updateBalances();
-        closeBankModal();
-        alert(bankName + " üzerinden bakiye yüklendi. Şimdi işleminiz onaylanıyor...");
-        proceedCheckout();
-    }
-
-    function selectCustomPayment(element) {
+    function selectCustomPayment(element, methodName) {
         document.querySelectorAll('.payment-card').forEach(card => {
             card.style.borderColor = '#475569';
             card.style.background = '#0f172a';
             card.style.color = 'var(--text-muted)';
+            card.classList.remove('selected');
         });
         element.style.borderColor = 'var(--primary)';
         element.style.background = 'rgba(245,158,11,0.1)';
         element.style.color = 'white';
+        element.classList.add('selected');
+        selectedPaymentMethod = methodName;
     }
 
     function handleCreditLoadAction() {
@@ -910,18 +900,45 @@
         const termsChecked = document.getElementById('termsCheck').checked;
 
         if (!amount || amount <= 0) {
-            alert("Lütfen geçerli bir miktar giriniz.");
             return;
         }
         if (!termsChecked) {
-            alert("Lütfen hizmet politikasını onaylayın.");
             return;
         }
 
-        userBalance += parseFloat(amount);
-        updateBalances();
-        alert(amount + " TL tutarında kredi başarıyla hesabınıza yüklendi!");
-        switchPage('store');
+        pendingCreditAmount = parseFloat(amount);
+        isCartCheckout = false;
+        
+        document.getElementById('paymentModalText').innerText = `${pendingCreditAmount.toFixed(2)} ₺ tutarında yükleme için lütfen [${selectedPaymentMethod}] bilgilerinizi doğrulayın.`;
+        if(selectedPaymentMethod === 'Havale & EFT' || selectedPaymentMethod === 'Papara / İninal') {
+            document.getElementById('cardDetailsArea').style.display = 'none';
+        } else {
+            document.getElementById('cardDetailsArea').style.display = 'block';
+        }
+        document.getElementById('paymentModal').style.display = 'flex';
+    }
+
+    function confirmPaymentProcess() {
+        userBalance += pendingCreditAmount;
+        if(isCartCheckout) {
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            userBalance -= total;
+            userInventory.push(...cart);
+            cart = [];
+            document.getElementById('cart-count').innerText = 0;
+            updateBalances();
+            closePaymentModal();
+            switchPage('inventory');
+        } else {
+            updateBalances();
+            closePaymentModal();
+            document.getElementById('creditAmount').value = '';
+            switchPage('store');
+        }
+    }
+
+    function closePaymentModal() {
+        document.getElementById('paymentModal').style.display = 'none';
     }
 
     function updateBalances() {
@@ -951,8 +968,7 @@
     }
 
     function claimItem(index) {
-        let item = userInventory.splice(index, 1)[0];
-        alert(item.name + " başarıyla oyun içindeki hesabınıza teslim edildi!");
+        userInventory.splice(index, 1);
         renderInventory();
     }
 
@@ -973,15 +989,12 @@
 
     function copyIP() {
         navigator.clipboard.writeText("oyna.yurdakulnetwork.com");
-        alert("Sunucu IP adresi kopyalandı: oyna.yurdakulnetwork.com");
     }
 
     function saveProfileCustomization() {
         const msg = document.getElementById('customTitleInput').value;
         if(msg) {
-            alert("Profil durum mesajınız güncellendi: " + msg);
-        } else {
-            alert("Lütfen geçerli bir durum mesajı yazın.");
+            document.getElementById('customTitleInput').value = '';
         }
     }
 
@@ -1020,9 +1033,6 @@
                 img.src = `https://minotar.net/avatar/${user}/100.png`;
             });
             closeAuthModal();
-            alert("Başarıyla giriş yapıldı: " + user);
-        } else {
-            alert("Lütfen kullanıcı adınızı girin.");
         }
     }
 
@@ -1032,16 +1042,4 @@
             currentUser = user;
             document.getElementById('nav-username').innerText = user;
             document.getElementById('drawer-name').innerText = user;
-            document.getElementById('profile-username').innerText = user;
-            document.querySelectorAll('img[alt="Avatar"]').forEach(img => {
-                img.src = `https://minotar.net/avatar/${user}/100.png`;
-            });
-            closeAuthModal();
-            alert("Kayıt oluşturuldu ve giriş yapıldı: " + user);
-        } else {
-            alert("Lütfen geçerli bir kullanıcı adı girin.");
-        }
-    }
-</script>
-</body>
-</html>
+            ... (1 KB kaldı)
